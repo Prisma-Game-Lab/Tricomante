@@ -7,8 +7,16 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
     private Rigidbody2D rb;
+    private bool isTouchingGround;
 
+    void Update()
+    {
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius,groundLayer);
+    }
 
     private void Awake()
     {
@@ -24,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed )
+        if (context.performed && isTouchingGround)
         {
             rb.velocity += Vector2.up * jumpForce;
         }
