@@ -19,12 +19,19 @@ public class BattleController : MonoBehaviour
                 break;
             
         }
-
-        EnemyAction(Random.range(1,2));
+        StartCoroutine(EnemyDelay());
     }
 
-    public void EnemyAction(int n)
+    private IEnumerator EnemyDelay()
     {
+        yield return new WaitForSeconds(1);
+        EnemyAction();
+    }
+
+    public void EnemyAction()
+    {
+        int n = Random.Range(1,3);
+
          switch(n)
         {
             case 1: 
@@ -33,14 +40,19 @@ public class BattleController : MonoBehaviour
             case 2:
                 Heal(enemy);
                 break;
-            
         }
     }
 
     private void Attack(GameObject attacked)
     {
-        var bar = attacked.GetComponent<Entity>();
-        bar.hpbar = 
+        var entity = attacked.GetComponent<Entity>();
+        entity.hpbar.Sethealth(entity.hpbar.slider.value - 0.1f);
+    }
+
+    private void Heal(GameObject healed)
+    {
+        var entity = healed.GetComponent<Entity>();
+        entity.hpbar.Sethealth(entity.hpbar.slider.value + 0.05f);
     }
 
     

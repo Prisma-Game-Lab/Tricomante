@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class HealthBarController : MonoBehaviour
 {
+    public SceneController sceneController;
     public Slider slider;
 
-    public void SetMaxhealth(int health)
+    public void SetMaxhealth(float health)
     {
         slider.maxValue=health;
         slider.value=health;
     }
 
-    public void Sethealth(int health)
+    public void Sethealth(float health)
     {
         slider.value=health;
+        if (slider.value <= 0)
+        {
+            sceneController.LoadScene("Game");
+        }
     }
 }
