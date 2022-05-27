@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
+    
     public GameObject player;
     public GameObject enemy;
-    
+
+
+    public CharactersSetup playerCS;
+    public CharactersSetup inimigoCS;
+
+
+
     public void PlayerAction(string action)
     {
         switch(action)
@@ -55,5 +62,4 @@ public class BattleController : MonoBehaviour
         entity.hpbar.Sethealth(entity.hpbar.slider.value + 0.05f);
     }
 
-    
 }
