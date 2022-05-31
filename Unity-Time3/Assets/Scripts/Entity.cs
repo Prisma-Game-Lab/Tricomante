@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         if(tipo == Tipo.Player)
         {
             battleController.playerCS = personagem;
+            
         }
         else
         {

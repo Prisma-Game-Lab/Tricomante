@@ -13,7 +13,6 @@ public class BattleController : MonoBehaviour
     public CharactersSetup inimigoCS;
 
 
-
     public void PlayerAction(string action)
     {
         switch(action)

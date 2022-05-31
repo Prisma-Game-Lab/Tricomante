@@ -7,5 +7,5 @@ public class ElementsSetup : ScriptableObject
 {
     public string nome;
     public string estilo;
-
+    public int qtdAcao;
 }

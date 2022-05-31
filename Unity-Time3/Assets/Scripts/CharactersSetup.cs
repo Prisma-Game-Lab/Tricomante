@@ -9,8 +9,7 @@ public class CharactersSetup : ScriptableObject
     public float health; //static para chamar a função de outro script
     public float speed;
     public int attack;
-    public int restoreHP;
+    public float restoreHP;
     public int defense;
-
 
 }
