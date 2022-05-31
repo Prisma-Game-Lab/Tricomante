@@ -5,11 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="Personagem",menuName = "Personagem" )]
 public class CharactersSetup : ScriptableObject
 {
-    public string character;
-    public float health; //static para chamar a função de outro script
-    public float speed;
-    public int attack;
-    public float restoreHP;
-    public int defense;
-
+    public int vida; //static para chamar a funï¿½ï¿½o de outro script
+    public int energia;
+    public int agilidade;
+    public int defesa;
+    public int resistencia;
+    public int sorte;
 }

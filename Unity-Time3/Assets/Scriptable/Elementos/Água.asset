@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce9fbd00141fc1419cdd953d0e11083, type: 3}
-  m_Name: megazord
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterSetup
-  Character: gabriel
-  health: 0
-  speed: 0
-  attack: 0
-  restoreHP: 0
-  defense: 0
+  m_Script: {fileID: 11500000, guid: bd22543117a467d4b942002b97aa2b8d, type: 3}
+  m_Name: "\xC1gua"
+  m_EditorClassIdentifier: 
+  nome: "\xC1gua"
+  estilo: "\xC1gua"

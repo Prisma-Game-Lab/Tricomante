@@ -14,21 +14,39 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
     private BattleController battleController;
     
+    private int vida; //static para chamar a fun��o de outro script
+    private int energia;
+    private int agilidade;
+    private int defesa;
+    private int resistencia;
+    private int sorte;
+
     private void Awake()
     {
         battleController = FindObjectOfType<BattleController>();
+        LoadSetup();
+    }
+
+    private void LoadSetup()
+    {
+        vida = personagem.vida;
+        energia = personagem.energia;
+        agilidade = personagem.agilidade;
+        defesa = personagem.defesa;
+        resistencia = personagem.resistencia;
+        sorte = personagem.sorte;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(tipo == Tipo.Player)
         {
-            battleController.playerCS = personagem;
+            //battleController.player = this.gameObject;
             
         }
         else
         {
-            battleController.inimigoCS = personagem;
+            //battleController.inimigo = this.gameObject;
         }
     }
 }

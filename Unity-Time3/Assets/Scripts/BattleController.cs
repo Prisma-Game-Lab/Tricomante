@@ -5,20 +5,32 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     
-    public GameObject player;
-    public GameObject enemy;
+    public GameObject activeJogador;
+    public GameObject activeInimigo;
+
+    public List<Entity> jogadores = new List<Entity>();
+    public List<Entity> inimigos = new List<Entity>();
 
 
-    public CharactersSetup playerCS;
-    public CharactersSetup inimigoCS;
+    private void Awake()
+    {
+        DefiniOrdem();
+
+    }
+
+    private void DefiniOrdem()
+    {
+        
+    }
 
 
+    /*
     public void PlayerAction(string action)
     {
         switch(action)
         {
             case "attack": 
-                Attack(enemy);
+                Attack(inimigo);
                 break;
             case "heal":
                 Heal(player);
@@ -44,7 +56,7 @@ public class BattleController : MonoBehaviour
                 Attack(player);
                 break;
             case 2:
-                Heal(enemy);
+                Heal(inimigo);
                 break;
         }
     }
@@ -60,5 +72,5 @@ public class BattleController : MonoBehaviour
         var entity = healed.GetComponent<Entity>();
         entity.hpbar.Sethealth(entity.hpbar.slider.value + 0.05f);
     }
-
+    */
 }
