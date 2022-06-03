@@ -8,22 +8,62 @@ public class BattleController : MonoBehaviour
     public GameObject activeJogador;
     public GameObject activeInimigo;
 
-    public List<Entity> jogadores = new List<Entity>();
+    public List<Entity> jogadores = new List<Entity>() { personagem.agilidade };
     public List<Entity> inimigos = new List<Entity>();
+
+    public string estilo;
+    public string descricao;
+
+    private void LoadSetup()
+    {
+        estilo = Elemento.estilo;
+        descricao = Elemento.descricao;
+    }
 
 
     private void Awake()
     {
-        DefiniOrdem();
+        DefineOrdem(jogadores);
+
 
     }
 
-    private void DefiniOrdem()
+    private void DefineOrdem(jogadores)
+    {
+        int i
+        int primeiro = 0
+        int segundo = 0
+        int terceiro = 0
+
+
+            //Não achei a função que apresenta em ordem os elementos em ordem
+
+        for (i = 0; i < jogadores.Count ++i) 
+        {
+            if (jogadores[i] > primeiro)
+            {
+                terceiro = segundo
+                primeiro = segundo
+                primeiro = jogadores[i]
+            }
+
+            else if (jogadores[i] > segundo)
+            {
+                segundo = terceiro
+                segundo = jogadores[i]
+            }
+            else if (jogadores[i] > terceiro)
+            {
+                terceiro = jogadores[i]
+            }
+        }
+
+    }
+
+    public void PlayerAction(string element, string element) // função recebe o nome dos três elementos e a partir daí, uma combinacao específica é utilizada
     {
         
     }
-
-
     /*
     public void PlayerAction(string action)
     {

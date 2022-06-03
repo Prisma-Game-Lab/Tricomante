@@ -8,6 +8,12 @@ public class HealthBarController : MonoBehaviour
     public SceneController sceneController;
     public Slider slider;
 
+    private void awake()
+    {
+        
+    }
+    
+
     public void SetMaxhealth(float health)
     {
         slider.maxValue=health;
