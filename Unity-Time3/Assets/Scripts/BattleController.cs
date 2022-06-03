@@ -8,59 +8,45 @@ public class BattleController : MonoBehaviour
     public GameObject activeJogador;
     public GameObject activeInimigo;
 
-    public List<Entity> jogadores = new List<Entity>() { personagem.agilidade };
+    public List<Entity> jogadores = new List<Entity>();
     public List<Entity> inimigos = new List<Entity>();
 
-    public string estilo;
-    public string descricao;
+    public List<ElementsSetup> elementos = new List<ElementsSetup>();
 
-    private void LoadSetup()
+    private void Start()
     {
-        estilo = Elemento.estilo;
-        descricao = Elemento.descricao;
+        DefineOrdem();
     }
 
+     
 
-    private void Awake()
+    private void DefineOrdem( )
     {
-        DefineOrdem(jogadores);
-
-
+        jogadores.Sort((a, b) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
+        inimigos.Sort((a, b) => a.agilidade.CompareTo(b.agilidade));
     }
 
-    private void DefineOrdem(jogadores)
+    //lista de ações 
+
+    public void AcrescentaElemento(ElementsSetup element)
     {
-        int i
-        int primeiro = 0
-        int segundo = 0
-        int terceiro = 0
+        elementos.Add(element);
+    }
 
-
-            //Não achei a função que apresenta em ordem os elementos em ordem
-
-        for (i = 0; i < jogadores.Count ++i) 
+    public void RecebeElemento(ElementsSetup element)
+    {
+        if (elementos.Count < 3)
         {
-            if (jogadores[i] > primeiro)
-            {
-                terceiro = segundo
-                primeiro = segundo
-                primeiro = jogadores[i]
-            }
-
-            else if (jogadores[i] > segundo)
-            {
-                segundo = terceiro
-                segundo = jogadores[i]
-            }
-            else if (jogadores[i] > terceiro)
-            {
-                terceiro = jogadores[i]
-            }
+            AcrescentaElemento(element);
         }
-
     }
 
-    public void PlayerAction(string element, string element) // função recebe o nome dos três elementos e a partir daí, uma combinacao específica é utilizada
+    public void ResetaElementos()
+    {
+        elementos = new List<ElementsSetup>();
+    }
+
+    public void PlayerAction() // função recebe o nome dos três elementos e a partir daí, uma combinacao específica é utilizada
     {
         
     }

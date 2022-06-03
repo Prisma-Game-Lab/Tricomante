@@ -13,13 +13,13 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public CharactersSetup personagem;
 
     private BattleController battleController;
-    
-    private int vida; 
-    private int energia;
-    private int agilidade;
-    private int defesa;
-    private int resistencia;
-    private int sorte;
+
+    public int vida;
+    public int energia;
+    public int agilidade;
+    public int defesa;
+    public int resistencia;
+    public int sorte;
 
     private void Awake()
     {
