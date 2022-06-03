@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
     private BattleController battleController;
     
-    private int vida; //static para chamar a funcao de outro script
+    private int vida; 
     private int energia;
     private int agilidade;
     private int defesa;
