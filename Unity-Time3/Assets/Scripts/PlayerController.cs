@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingGround;
     private float velocityX;
     public GroundCheck groundCheck;
+    public static Vector3 playerPosition;
 
     void Update()
     {
@@ -25,7 +26,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = playerPosition;
         rb = GetComponent<Rigidbody2D>(); 
+    }
+
+    private void OnDisable()
+    {
+        playerPosition = transform.position;
     }
 
     public void Move(InputAction.CallbackContext context)
