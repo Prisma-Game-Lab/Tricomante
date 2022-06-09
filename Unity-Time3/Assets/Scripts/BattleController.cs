@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    
+
     public GameObject activeJogador;
     public GameObject activeInimigo;
 
@@ -18,9 +18,9 @@ public class BattleController : MonoBehaviour
         DefineOrdem();
     }
 
-     
 
-    private void DefineOrdem( )
+
+    private void DefineOrdem()
     {
         jogadores.Sort((a, b) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
         inimigos.Sort((a, b) => a.agilidade.CompareTo(b.agilidade));
@@ -48,9 +48,13 @@ public class BattleController : MonoBehaviour
 
     public void PlayerAction() // função recebe o nome dos três elementos e a partir daí, uma combinacao específica é utilizada
     {
-        
+
     }
-    
+
+    public void RecebeTipo()
+    {
+
+    }
 
     /*
     public void PlayerAction(string action)

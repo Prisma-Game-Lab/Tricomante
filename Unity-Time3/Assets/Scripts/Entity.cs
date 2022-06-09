@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int energia;
     public int agilidade;
     public int defesa;
-    public int resistencia;
+    public string tipoResistencia;
     public int sorte;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         energia = personagem.energia;
         agilidade = personagem.agilidade;
         defesa = personagem.defesa;
-        resistencia = personagem.resistencia;
+        tipoResistencia = personagem.tipoResistencia;
         sorte = personagem.sorte;
     }
 
