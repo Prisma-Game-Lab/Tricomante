@@ -1676,11 +1676,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeJogador: {fileID: 0}
   activeInimigo: {fileID: 0}
-  jogadores:
+  personagens:
   - {fileID: 785292689}
   - {fileID: 2001367873}
   - {fileID: 534636083}
-  inimigos:
   - {fileID: 297359101}
   - {fileID: 99281794}
   - {fileID: 653041674}
@@ -2592,7 +2591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35.6, y: -501.7}
+  m_AnchoredPosition: {x: 35.600006, y: -501.7}
   m_SizeDelta: {x: 374.3368, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &759746705
@@ -2810,7 +2809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &843410308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2988,7 +2987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -167.28, y: 89.6}
+  m_AnchoredPosition: {x: -167.28003, y: 89.600006}
   m_SizeDelta: {x: 160, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037611396
@@ -4724,7 +4723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 34.18, y: -53.7}
+  m_AnchoredPosition: {x: 34.179993, y: -53.699997}
   m_SizeDelta: {x: 734.3, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1898847614

@@ -9,7 +9,7 @@ public class CharactersSetup : ScriptableObject
     public int energia;
     public int agilidade;
     public int defesa;
-    public string tipoResistencia; //String pq seria uma resistência de elemento, e não um número
-    public string tipoFraqueza; //String pq seria uma resistência de elemento, e não um número
+    public string tipoResistencia; //String pq seria uma resistï¿½ncia de elemento, e nï¿½o um nï¿½mero
+    public string tipoFraqueza; //String pq seria uma resistï¿½ncia de elemento, e nï¿½o um nï¿½mero
     public int sorte;
 }

@@ -7,4 +7,6 @@ public class ElementsSetup : ScriptableObject
 {
     public string estilo;
     public string descricao;
+    public int energiaGasta;
+    public int aumenPercem;
 }

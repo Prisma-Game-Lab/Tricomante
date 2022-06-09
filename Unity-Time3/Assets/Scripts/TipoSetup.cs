@@ -4,5 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Tipo", menuName = "Tipo")]
 public class TipoSetup : ScriptableObject
 {
-   
+public int valorAcao;
+public int energiaGasta;
+ 
 }

@@ -8,8 +8,8 @@ public class BattleController : MonoBehaviour
     public GameObject activeJogador;
     public GameObject activeInimigo;
 
-    public List<Entity> jogadores = new List<Entity>();
-    public List<Entity> inimigos = new List<Entity>();
+    public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeÃ§a, idependente do tipo do personagem 
+   
 
     public List<ElementsSetup> elementos = new List<ElementsSetup>();
 
@@ -22,11 +22,11 @@ public class BattleController : MonoBehaviour
 
     private void DefineOrdem()
     {
-        jogadores.Sort((a, b) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
-        inimigos.Sort((a, b) => a.agilidade.CompareTo(b.agilidade));
+        personagens.Sort((b, a) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
+        
     }
 
-    //lista de ações 
+    //lista de aï¿½ï¿½es 
 
     public void AcrescentaElemento(ElementsSetup element)
     {
@@ -35,7 +35,7 @@ public class BattleController : MonoBehaviour
 
     public void RecebeElemento(ElementsSetup element)
     {
-        if (elementos.Count < 3)
+        if (elementos.Count < 2)
         {
             AcrescentaElemento(element);
         }
@@ -46,15 +46,46 @@ public class BattleController : MonoBehaviour
         elementos = new List<ElementsSetup>();
     }
 
-    public void PlayerAction() // função recebe o nome dos três elementos e a partir daí, uma combinacao específica é utilizada
+    public void PlayerAction() // funï¿½ï¿½o recebe o nome dos trï¿½s elementos e a partir daï¿½, uma combinacao especï¿½fica ï¿½ utilizada
     {
 
     }
 
     public void RecebeTipo()
     {
+      if(tipo==Ataque)
+      {
+       
+      }
+      if(tipo==cura)
+      {
+
+      }
+      if(tipo==buff)
+      {
+
+      }
 
     }
+    
+    public void acaoAtaque()
+    {
+      float resultado = valorAcao + valorAcao * (aumenPercem/100);// resultado do ataque + tal elemento 
+
+      if(elementos.Count==2) // caso o player venha a escolher outro elemento 
+      {
+        
+      }
+    }
+     public void acaoDefesa()
+     {
+     float resultado=valorAcao + valorAcao * (aumenPercem/100);
+
+     if (elementos.Count==2)
+     {
+         
+     }
+     }
 
     /*
     public void PlayerAction(string action)
