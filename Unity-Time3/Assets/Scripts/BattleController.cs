@@ -85,29 +85,59 @@ public class BattleController : MonoBehaviour
         elementosPanel.SetActive(false);
      }
     
-    public void acaoAtaque()
+    public void acaoAtaque( )//ElementsSetup element ==
     {
       //float resultado = valorAcao + valorAcao * (aumenPercem/100);// resultado do ataque + tal elemento 
+      /*
+      if(elementos ) // caso o player venha a escolher outro elemento 
+        {
+           // element == ElementsSetup.Fogo
+        }
 
-      if(elementos.Count==2) // caso o player venha a escolher outro elemento 
-      {
-        
-      }
+      else if (elementos )
+        {
+            //element == ElementsSetup.Terra
+        }
+      else
+        {
+
+        }*/
     }
-     public void acaoDefesa()
+     public void acaoDefesa()//ElementsSetup element == 
      {
-     //float resultado=valorAcao + valorAcao * (aumenPercem/100);
+        //float resultado=valorAcao + valorAcao * (aumenPercem/100);
+        /*
+        if (element ==  ) 
+        {
+           // ElementsSetup.Fogo
+        }
 
-     if (elementos.Count==2)
-     {
-         
-     }
-   
-     }
+        else if (element ==  )
+        {
+            //ElementsSetup.Terra
+        }
+        else
+        {
+
+        }*/
+    }
      public void acaoApoio()
      {
+        /*if (element == ) 
+        {
+            //ElementsSetup.Fogo
+        }
 
-     }
+        else if (element ==  )
+        {
+            //ElementsSetup.Terra
+
+        }
+        else
+        {
+
+        }*/
+    }
 
     /*
     public void PlayerAction(string action)

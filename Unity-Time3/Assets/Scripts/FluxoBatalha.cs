@@ -31,6 +31,8 @@ public class FluxoBatalha : MonoBehaviour
         yield return new WaitForSeconds(2);
         AvancaJogador();
     }
+
+
     // Update is called once per frame
     void Update()
     {

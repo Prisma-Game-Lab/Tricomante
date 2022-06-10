@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Entity : MonoBehaviour, IPointerClickHandler
+public class Entity : MonoBehaviour //, IPointerClickHandler
 {
 
     public enum Tipo { Player, Inimigo };
@@ -25,7 +25,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        battleController = FindObjectOfType<BattleController>();
+        //battleController = FindObjectOfType<BattleController>();
         LoadSetup();
     }
 
@@ -38,7 +38,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         tipoResistencia = personagem.tipoResistencia;
         sorte = personagem.sorte;
     }
-
+    /*
     public void OnPointerClick(PointerEventData eventData)
     {
         if(tipo == Tipo.Player)
@@ -51,4 +51,5 @@ public class Entity : MonoBehaviour, IPointerClickHandler
             //battleController.inimigo = this.gameObject;
         }
     }
+    */
 }

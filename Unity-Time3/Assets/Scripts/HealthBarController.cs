@@ -10,7 +10,7 @@ public class HealthBarController : MonoBehaviour
 
     private void awake()
     {
-        
+       // float health = personagem.vida;
     }
     
 

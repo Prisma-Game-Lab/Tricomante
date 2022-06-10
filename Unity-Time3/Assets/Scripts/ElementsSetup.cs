@@ -9,4 +9,5 @@ public class ElementsSetup : ScriptableObject
     public string descricao;
     public int energiaGasta;
     public int aumenPercem;
+
 }
