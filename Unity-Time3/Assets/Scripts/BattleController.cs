@@ -53,15 +53,15 @@ public class BattleController : MonoBehaviour
     {
         if(tipo==Tipos.ataque)
         {
-             acaoAtaque()
+            acaoAtaque();
         }
         if(tipo==Tipos.defesa)
         {
-            acaoDefesa()
+            acaoDefesa();
         }
         if(tipo==Tipos.apoio)
         {
-            acaoApoio()
+            acaoApoio();
         }
         fluxo.AvancaJogador();
     }

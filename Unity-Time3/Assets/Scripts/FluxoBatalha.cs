@@ -5,7 +5,7 @@ using UnityEngine;
 public class FluxoBatalha : MonoBehaviour
 {
     public BattleController battleController;
-    private int jogadorAtual
+    private int jogadorAtual;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,15 +13,15 @@ public class FluxoBatalha : MonoBehaviour
       AvancaJogador();//chamando a funcao para a mesma ser executada
       
     }
-    private void AvancaJogador()//criando uma funcao que contra o fluxo de turno de cada personagem 
+    public void AvancaJogador()//criando uma funcao que contra o fluxo de turno de cada personagem 
     {
-        var jogador = battleController.jogadores[jogadodorAtual++];
-        if(jogador.tipo==Entity.Tipo.Player)
+        var jogador = battleController.personagens[jogadorAtual++];
+        if (jogador.tipo == Entity.Tipo.Player)
         {
-           battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes 
-           
+            battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes 
+
         }
-        else()
+        else
         {
             StartCoroutine(AcaoInimigo());
         }
