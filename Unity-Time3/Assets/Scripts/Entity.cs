@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
     public HealthBarController hpbar;
     public CharactersSetup personagem;
+    
 
     private BattleController battleController;
 
@@ -20,6 +21,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int defesa;
     public string tipoResistencia;
     public int sorte;
+    
 
     private void Awake()
     {

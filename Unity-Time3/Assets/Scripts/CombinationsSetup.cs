@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Combinacao", menuName = "Combinacao")]
 public class CombinationsSetup : ScriptableObject
 { 
-    // Todo scriptable object � um arquivo e d� pra usar o nome dele ao inv�s de usar uma vari�vel para o nome
+    // Todo scriptable object e um arquivo e de pra usar o nome dele ao inves de usar uma variavel para o nome
     public int qtdAcao;
     public int energiaGasta;
     public string efeito;

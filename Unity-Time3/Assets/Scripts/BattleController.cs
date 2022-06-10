@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
+    public FluxoBatalha fluxo;// botando uma referencia ao script FluxoBatalha
+    private Tipos tipo;
+    public GameObject tiposPanel;
+    public GameObject elementosPanel;
+    [HideInInspector]public GameObject activeJogador;//[HideInInspector] serve para ocultar a referencia desejada 
+    [HideInInspector]public GameObject activeInimigo;//criando referencias (activeJogador,activeInimigo) do GameObject
 
-    public GameObject activeJogador;
-    public GameObject activeInimigo;
-
-    public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade começa, idependente do tipo do personagem 
+    public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, idependente do tipo do personagem(aliado ou inimigo) 
    
 
-    public List<ElementsSetup> elementos = new List<ElementsSetup>();
+    public List<ElementsSetup> elementos = new List<ElementsSetup>();//criando uma lista pra ir adicionando os elementos 
 
     private void Start()
     {
-        DefineOrdem();
+        DefineOrdem();//chamando a funcao DefineOrdem() para a mesma ser executada  
     }
 
 
@@ -26,51 +29,65 @@ public class BattleController : MonoBehaviour
         
     }
 
-    //lista de a��es 
+    //lista de acoes 
 
     public void AcrescentaElemento(ElementsSetup element)
     {
-        elementos.Add(element);
+        elementos.Add(element);//adicionado elemento desejado
     }
 
     public void RecebeElemento(ElementsSetup element)
     {
-        if (elementos.Count < 2)
+        if (elementos.Count < 1)
         {
-            AcrescentaElemento(element);
+            AcrescentaElemento(element);//acrescenta elementos a lista 
         }
     }
 
     public void ResetaElementos()
     {
-        elementos = new List<ElementsSetup>();
+        elementos = new List<ElementsSetup>();// reseta a lista de lementos 
     }
 
-    public void PlayerAction() // fun��o recebe o nome dos tr�s elementos e a partir da�, uma combinacao espec�fica � utilizada
+    public void PlayerAction() // funcao recebe o nome dos tres elementos e a partir de uma combinacao especifica utilizada
     {
-
+        if(tipo==Tipos.ataque)
+        {
+             acaoAtaque()
+        }
+        if(tipo==Tipos.defesa)
+        {
+            acaoDefesa()
+        }
+        if(tipo==Tipos.apoio)
+        {
+            acaoApoio()
+        }
+        fluxo.AvancaJogador();
     }
-
-    public void RecebeTipo()
+    public void AtivaTipos()// faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
     {
-      if(tipo==Ataque)
-      {
-       
-      }
-      if(tipo==cura)
-      {
-
-      }
-      if(tipo==buff)
-      {
-
-      }
-
+      tiposPanel.SetActive(true);  
     }
+    public void DesativaElementos()//nesse caso desativa o painel dos elementos, que por consequencia desativa o painel dos tipos 
+    {
+       elementosPanel.SetActive(false); 
+    }
+    public void RecebeTipo(int botao)//faz com que o painel dos tipos apareca para o jogador(ultizamos int + "variavel" pois declaramos um enum Tipos que ira receber numeros inteiros ) 
+    {
+        tipo=(Tipos) botao;
+        tiposPanel.SetActive(false);
+        elementosPanel.SetActive(true);
+    }
+     public void VoltaTipo()//volta no painel dos tipos de acao 
+     {
+      tiposPanel.SetActive(true);
+        elementosPanel.SetActive(false);
+     }
     
     public void acaoAtaque()
     {
-      float resultado = valorAcao + valorAcao * (aumenPercem/100);// resultado do ataque + tal elemento 
+      //float resultado = valorAcao + valorAcao * (aumenPercem/100);// resultado do ataque + tal elemento 
 
       if(elementos.Count==2) // caso o player venha a escolher outro elemento 
       {
@@ -79,12 +96,17 @@ public class BattleController : MonoBehaviour
     }
      public void acaoDefesa()
      {
-     float resultado=valorAcao + valorAcao * (aumenPercem/100);
+     //float resultado=valorAcao + valorAcao * (aumenPercem/100);
 
      if (elementos.Count==2)
      {
          
      }
+   
+     }
+     public void acaoApoio()
+     {
+
      }
 
     /*
