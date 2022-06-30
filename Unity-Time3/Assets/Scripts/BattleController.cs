@@ -16,11 +16,39 @@ public class BattleController : MonoBehaviour
 
     public List<ElementsSetup> elementos = new List<ElementsSetup>();//criando uma lista pra ir adicionando os elementos 
 
+    private IState _attackState;
+    private IState _supportState;
+    private IState _deffenceState;
+    private IState currentState;
+
     private void Start()
     {
         DefineOrdem();//chamando a funcao DefineOrdem() para a mesma ser executada  
+        _attackState = new AttackState(this);
+        _supportState = new SupportState(this);
+        _deffenceState = new DeffenceState(this);
+        currentState = _attackState;
     }
 
+    public void setState(IState newState)
+    {
+        this.currentState = newState;
+    }
+
+    public IState GetAttackState()
+    {
+        return _attackState;
+    }
+
+    public IState GetDeffenceState()
+    {
+        return _deffenceState;
+    }
+
+    public IState GetSupportState()
+    {
+        return _supportState;
+    }
 
 
     private void DefineOrdem()
@@ -29,7 +57,81 @@ public class BattleController : MonoBehaviour
         
     }
 
-    //lista de acoes 
+    public void triggerWaterEffect()
+    {
+        currentState.triggerWaterEffect();
+    }
+
+    public void triggerFireEffect()
+    {
+        currentState.triggerFireEffect();
+    }
+
+    public void triggerEarthEffect()
+    {
+        currentState.triggerEarthEffect();
+    }
+
+    public void triggerCureEffect()
+    {
+        currentState.triggerCureEffect();
+    }
+
+    public void triggerPunchEffect()
+    {
+        currentState.triggerPunchEffect();
+    }
+
+    public void triggerPierceEffect()
+    {
+        currentState.triggerPierceEffect();
+    }
+
+    public void triggerCutEffect()
+    {
+        currentState.triggerCutEffect();
+    }
+
+    public void triggerIntensifyEffect()
+    {
+        currentState.triggerIntensifyEffect();
+    }
+
+    public void AtivaTipos()// faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
+    {
+        tiposPanel.SetActive(true);
+    }
+    public void DesativaElementos()//nesse caso desativa o painel dos elementos, que por consequencia desativa o painel dos tipos 
+    {
+        elementosPanel.SetActive(false);
+    }
+
+    
+    public void ButtonChangeState(int i)
+    {
+        if (i == 0)
+        {
+            setState(GetAttackState());
+        }
+        else if (i == 1)
+        {
+            setState(GetSupportState());
+        }
+        else 
+        {
+            setState(GetDeffenceState());
+        }
+
+        tiposPanel.SetActive(false);
+        elementosPanel.SetActive(true);
+    }
+    public void VoltaTipo()//volta no painel dos tipos de acao 
+    {
+        tiposPanel.SetActive(true);
+        elementosPanel.SetActive(false);
+    }
+
+    /*lista de acoes 
 
     public void AcrescentaElemento(ElementsSetup element)
     {
@@ -65,14 +167,8 @@ public class BattleController : MonoBehaviour
         }
         fluxo.AvancaJogador();
     }
-    public void AtivaTipos()// faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
-    {
-      tiposPanel.SetActive(true);  
-    }
-    public void DesativaElementos()//nesse caso desativa o painel dos elementos, que por consequencia desativa o painel dos tipos 
-    {
-       elementosPanel.SetActive(false); 
-    }
+    
+    
     public void RecebeTipo(int botao)//faz com que o painel dos tipos apareca para o jogador(ultizamos int + "variavel" pois declaramos um enum Tipos que ira receber numeros inteiros ) 
     {
         tipo=(Tipos) botao;
@@ -101,7 +197,7 @@ public class BattleController : MonoBehaviour
       else
         {
 
-        }*/
+        
     }
      public void acaoDefesa()//ElementsSetup element == 
      {
@@ -119,7 +215,7 @@ public class BattleController : MonoBehaviour
         else
         {
 
-        }*/
+        
     }
      public void acaoApoio()
      {
@@ -136,10 +232,10 @@ public class BattleController : MonoBehaviour
         else
         {
 
-        }*/
+       
     }
 
-    /*
+    
     public void PlayerAction(string action)
     {
         switch(action)
