@@ -12,7 +12,10 @@ public class BattleController : MonoBehaviour
     [HideInInspector]public GameObject activeInimigo;//criando referencias (activeJogador,activeInimigo) do GameObject
 
     public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, idependente do tipo do personagem(aliado ou inimigo) 
-   
+
+    [HideInInspector]public List<Entity> aliados = new List<Entity>();
+
+    [HideInInspector]public List<Entity> inimigos = new List<Entity>();
 
     public List<ElementsSetup> elementos = new List<ElementsSetup>();//criando uma lista pra ir adicionando os elementos 
 
@@ -21,9 +24,26 @@ public class BattleController : MonoBehaviour
     private IState _deffenceState;
     private IState currentState;
 
+    private void Awake()
+    {
+        for (int i = 0; i < personagens.Count; i++)
+        {
+            if (personagens[i].tipo == Entity.Tipo.Player)
+            {
+                aliados.Add(personagens[i]);
+            }
+            else
+            {
+                inimigos.Add(personagens[i]);
+            }
+        }
+    }
+
     private void Start()
     {
         DefineOrdem();//chamando a funcao DefineOrdem() para a mesma ser executada  
+
+      
         _attackState = new AttackState(this);
         _supportState = new SupportState(this);
         _deffenceState = new DeffenceState(this);
@@ -64,12 +84,12 @@ public class BattleController : MonoBehaviour
 
     public void triggerFireEffect()
     {
-        currentState.triggerFireEffect();
+        currentState.triggerFireEffect();      
     }
 
     public void triggerEarthEffect()
     {
-        currentState.triggerEarthEffect();
+        currentState.triggerEarthEffect();       
     }
 
     public void triggerCureEffect()

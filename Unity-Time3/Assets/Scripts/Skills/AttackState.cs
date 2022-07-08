@@ -13,17 +13,37 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerWaterEffect()
     {
-        Debug.Log("AttackAgua");
+        for (int i = 0; i < this.bc.inimigos.Count; i++)
+        {
+            Damage(this.bc.inimigos[i]);
+        }
+        this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerFireEffect()
     {
+        for (int i = 0; i < this.bc.inimigos.Count; i++)
+        {
+            Damage(this.bc.inimigos[i]);
+            int burnChance= Random.Range(1,101);
+            if (burnChance <= 100 )
+            {
+                this.bc.inimigos[i].burn = true;
+                this.bc.inimigos[i].burnCounter = 3;
+            }
 
+        }
+        this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerEarthEffect()
     {
+        for (int i = 0; i < this.bc.inimigos.Count; i++)
+        {
+            Damage(this.bc.inimigos[i]);
 
+        }
+        this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerCureEffect()
@@ -50,4 +70,13 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     {
 
     }
+
+    private void Damage(Entity target) // recebe o alvo
+    {
+        Debug.Log(target);
+        float damage = 10 / (1 + target.defesa / 100);        
+        target.vida -= (int) damage;       
+        target.hpbar.Sethealth(target.vida);   
+    }
 }
+

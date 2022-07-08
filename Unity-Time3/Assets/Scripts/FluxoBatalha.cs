@@ -6,6 +6,7 @@ public class FluxoBatalha : MonoBehaviour
 {
     public BattleController battleController;
     private int jogadorAtual;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,13 @@ public class FluxoBatalha : MonoBehaviour
     }
     public void AvancaJogador()//criando uma funcao que contra o fluxo de turno de cada personagem 
     {
-        var jogador = battleController.personagens[jogadorAtual++];
+
+        var jogador = SetJogador();
+
+        if (jogador.burn)
+        {
+            jogador.Burn();
+        }
         if (jogador.tipo == Entity.Tipo.Player)
         {
             battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes 
@@ -26,6 +33,17 @@ public class FluxoBatalha : MonoBehaviour
             StartCoroutine(AcaoInimigo());
         }
     }
+
+    private Entity SetJogador()
+    {
+        if (jogadorAtual >= battleController.personagens.Count -1)
+        {
+            jogadorAtual = 0;
+            return battleController.personagens[jogadorAtual];
+        }
+        return battleController.personagens[jogadorAtual++];
+    }
+
     private IEnumerator AcaoInimigo()
     {
         yield return new WaitForSeconds(2);

@@ -22,6 +22,7 @@ public class HealthBarController : MonoBehaviour
 
     public void Sethealth(float health)
     {
+        //TODO: consertar o problema da batalha acabar quando um personagem morre
         slider.value=health;
         if (slider.value <= 0)
         {

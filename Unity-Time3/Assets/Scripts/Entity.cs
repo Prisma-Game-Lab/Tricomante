@@ -21,12 +21,18 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
     public int defesa;
     public string tipoResistencia;
     public int sorte;
-    
+
+    public bool burn;
+    public bool blind;
+    public int burnCounter;
+    public int blindCounter;
 
     private void Awake()
     {
         //battleController = FindObjectOfType<BattleController>();
         LoadSetup();
+        burnCounter = 3;
+        blindCounter = 2;
     }
 
     private void LoadSetup()
@@ -37,7 +43,25 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         defesa = personagem.defesa;
         tipoResistencia = personagem.tipoResistencia;
         sorte = personagem.sorte;
+
+        this.hpbar.SetMaxhealth(vida);
+
+        burn = false;
+        blind = false;
     }
+
+    public void Burn()
+    {
+        this.vida -= 5;
+        this.hpbar.Sethealth(this.vida);
+        this.burnCounter--;
+
+        if (this.burnCounter <= 0)
+        {
+            burn = false;
+        }
+    }
+
     /*
     public void OnPointerClick(PointerEventData eventData)
     {

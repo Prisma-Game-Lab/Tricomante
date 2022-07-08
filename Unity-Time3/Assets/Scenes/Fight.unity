@@ -155,14 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 1
-  hpbar: {fileID: 2008742378}
+  hpbar: {fileID: 122495651}
   personagem: {fileID: 11400000, guid: b2b9aaf40fd4273448d3ea6bea935e3b, type: 2}
-  vida: 0
+  vida: 30
   energia: 0
   agilidade: 0
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!212 &99281795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -332,11 +336,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 427857247}
         m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: RecebeElemento
-        m_Mode: 2
+        m_MethodName: triggerFireEffect
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 5846b986c379ce14cab91c796733b662, type: 2}
-          m_ObjectArgumentAssemblyTypeName: ElementsSetup, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1219,12 +1223,16 @@ MonoBehaviour:
   tipo: 1
   hpbar: {fileID: 2008742378}
   personagem: {fileID: 11400000, guid: 31339c012ab043644b1bea8c40fc5faa, type: 2}
-  vida: 0
+  vida: 30
   energia: 0
   agilidade: 0
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!58 &297359102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1655,6 +1663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427857248}
   - component: {fileID: 427857247}
+  - component: {fileID: 427857249}
   m_Layer: 0
   m_Name: BattleController
   m_TagString: Untagged
@@ -1674,7 +1683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51667b16a01deda4c910182d597207c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fluxo: {fileID: 0}
+  fluxo: {fileID: 427857249}
   tiposPanel: {fileID: 2069966099}
   elementosPanel: {fileID: 843410307}
   activeJogador: {fileID: 0}
@@ -1686,6 +1695,8 @@ MonoBehaviour:
   - {fileID: 297359101}
   - {fileID: 99281794}
   - {fileID: 653041674}
+  aliados: []
+  inimigos: []
   elementos: []
 --- !u!4 &427857248
 Transform:
@@ -1702,6 +1713,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &427857249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427857246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c1720ccd363de4592a8fcd9d583dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleController: {fileID: 427857247}
 --- !u!1 &453981666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1969,10 @@ MonoBehaviour:
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!212 &534636084
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2314,14 +2342,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 1
-  hpbar: {fileID: 2008742378}
+  hpbar: {fileID: 1642091657}
   personagem: {fileID: 11400000, guid: 6c3fd8ecc114bb8448893c3a30dd912e, type: 2}
-  vida: 0
+  vida: 30
   energia: 0
   agilidade: 0
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!212 &653041675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2769,6 +2801,10 @@ MonoBehaviour:
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!61 &785292690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4280,7 +4316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169.9, y: -44.79904}
+  m_AnchoredPosition: {x: -169.89996, y: -44.79904}
   m_SizeDelta: {x: 201.9709, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1642091657
@@ -4545,11 +4581,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 427857247}
         m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: RecebeElemento
-        m_Mode: 2
+        m_MethodName: triggerEarthEffect
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: a26d2528fe0901c4f806f2e9e4db0903, type: 2}
-          m_ObjectArgumentAssemblyTypeName: ElementsSetup, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5229,6 +5265,10 @@ MonoBehaviour:
   defesa: 0
   tipoResistencia: 
   sorte: 0
+  burn: 0
+  blind: 0
+  burnCounter: 0
+  blindCounter: 0
 --- !u!212 &2001367874
 SpriteRenderer:
   m_ObjectHideFlags: 0
