@@ -19,4 +19,6 @@ public class AttackStatesSetup : ScriptableObject
     public int burnChance;
     public int blindChance;
     public int defenceReduce;
+
+    
 }

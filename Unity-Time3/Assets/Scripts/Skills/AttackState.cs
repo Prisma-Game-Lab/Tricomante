@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : IState // SIgnifica que essa classe herda de, ou seja tem todas as funções dessa classe que ela herda: a extensão, podendo ser mais específicas, e a implementação, podendo ter outras funcionalidades
+public class AttackState : IState // SIgnifica que essa classe herda de, ou seja tem todas as funï¿½ï¿½es dessa classe que ela herda: a extensï¿½o, podendo ser mais especï¿½ficas, e a implementaï¿½ï¿½o, podendo ter outras funcionalidades
 {
-    private BattleController bc; // Criar uma variável do tipo battleController
+    private BattleController bc; // Criar uma variï¿½vel do tipo battleController
 
 
     public AttackState(BattleController _bc)

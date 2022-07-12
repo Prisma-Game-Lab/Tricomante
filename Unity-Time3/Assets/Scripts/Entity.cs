@@ -24,10 +24,14 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
 
     public bool burn;
     public bool blind;
+    public bool dodge;
     public int burnCounter;
     public int blindCounter;
+    public int dodgeCounter;
+
 
     public AttackStatesSetup attackStatesSetup;
+    public DeffenseStatesSetup deffenseStatesSetup;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         LoadSetup();
         burnCounter = 3;
         blindCounter = 2;
+        dodgeCounter = 2;
     }
 
     private void LoadSetup()
@@ -50,6 +55,7 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
 
         burn = false;
         blind = false;
+        dodge = false;
     }
 
     public void Burn()
@@ -73,6 +79,23 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         {
             blind = false;
         }
+    }
+
+    public void Dodge()
+    {
+        this.agilidade += 5;
+        this.dodgeCounter --;
+
+        if (this.dodgeCounter <= 0)
+        {
+            dodge = false;
+        } 
+    }
+     
+    public void maisDefesa()
+    {
+
+
     }
 
    
