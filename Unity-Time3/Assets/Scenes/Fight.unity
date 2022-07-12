@@ -1961,7 +1961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 0
-  hpbar: {fileID: 3124245635982658557}
+  hpbar: {fileID: 759746705}
   personagem: {fileID: 11400000, guid: 166b331688720cf4580be9f0486db9d9, type: 2}
   vida: 0
   energia: 0
@@ -5257,7 +5257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 0
-  hpbar: {fileID: 3124245635982658557}
+  hpbar: {fileID: 1420859006}
   personagem: {fileID: 11400000, guid: 7b4e1a62600c23347938f54ea0ea8c52, type: 2}
   vida: 0
   energia: 0

@@ -62,6 +62,17 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         }
     }
 
+    public void Bind()
+    {
+        this.agilidade -= 5;
+        this.bindCounter--;
+
+        if (this.bindCounter <= 0)
+        {
+            bind = false;
+        }
+    }
+
     /*
     public void OnPointerClick(PointerEventData eventData)
     {
