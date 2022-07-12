@@ -46,8 +46,4 @@ public class DeffenceState : IState
 
     }
 
-    public void triggerIntensifyEffect()
-    {
-
-    }
 }

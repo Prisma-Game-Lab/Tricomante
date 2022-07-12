@@ -46,8 +46,4 @@ public class SupportState : IState
 
     }
 
-    public void triggerIntensifyEffect()
-    {
-
-    }
 }

@@ -27,6 +27,8 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
     public int burnCounter;
     public int blindCounter;
 
+    public AttackStatesSetup attackStatesSetup;
+
     private void Awake()
     {
         //battleController = FindObjectOfType<BattleController>();
@@ -62,17 +64,18 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         }
     }
 
-    public void Bind()
+    public void Blind()
     {
         this.agilidade -= 5;
-        this.bindCounter--;
+        this.blindCounter--;
 
-        if (this.bindCounter <= 0)
+        if (this.blindCounter <= 0)
         {
-            bind = false;
+            blind = false;
         }
     }
 
+   
     /*
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -11,5 +11,4 @@ public interface IState
     public void triggerPunchEffect();
     public void triggerPierceEffect();
     public void triggerCutEffect();
-    public void triggerIntensifyEffect();
 }

@@ -6,6 +6,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 {
     private BattleController bc; // Criar uma variável do tipo battleController
 
+
     public AttackState(BattleController _bc)
     {
         this.bc = _bc;
@@ -13,24 +14,27 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerWaterEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);
+            Damage(this.bc.inimigos[i], dano);
         }
         this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerFireEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.fireDamage;
+        int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);
+            Damage(this.bc.inimigos[i], dano);
             int burnChance= Random.Range(1,101);
-            this.bc.inimigos[i].burnCounter = 3;
-            if (burnChance <= 100 )
+            
+            if (burnChance <= chanceFogo )
             {
                 this.bc.inimigos[i].burn = true;
-                
+                this.bc.inimigos[i].burnCounter = 3;
             }
 
         }
@@ -39,15 +43,17 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerEarthEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.earthDamage;
+        int chanceBlind = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.blindChance;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);
-            int bindChance = Random.Range(1, 101);
-            this.bc.inimigos[i].bindCounter = 3;
-            if (bindChance <= 100)
+            Damage(this.bc.inimigos[i], dano);
+            int blindChance = Random.Range(1, 101);
+            
+            if (blindChance <= chanceBlind)
             {
-                this.bc.inimigos[i].bind = true;
-                
+                this.bc.inimigos[i].blind = true;
+                this.bc.inimigos[i].blindCounter = 3;
             }
         }
         this.bc.fluxo.AvancaJogador();
@@ -55,65 +61,60 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerCureEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cureDamage;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);
-            Cura(this.bc.personagem[i]);
+            int damage = Damage(this.bc.inimigos[i], dano);
+            Cura(this.bc.aliados[i], damage);
         }
     }
 
 
     public void triggerPunchEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.punchDamage;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);
-            LowerDefense(this.bc.inimigos[i]);
+            Damage(this.bc.inimigos[i], dano);
+            this.bc.inimigos[i].defesa -= 5;
         }
     }
 
     public void triggerPierceEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.pierceDamage;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
-        {
-            Damage(this.bc.inimigos[i]);
-            //TODO fazer o golpe perfuar o inimigo
+        {           
+            this.bc.inimigos[i].vida -= dano;
+            this.bc.inimigos[i].hpbar.Sethealth(this.bc.inimigos[i].vida);
         }
     }
 
     public void triggerCutEffect()
     {
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cutDamage;
         for (int i = 0; i < this.bc.inimigos.Count; i++)
         {
-            Damage(this.bc.inimigos[i]);// será eu nesse caso não seria apenas questão de animação?
+            for (int j = 0; j < 3; j++)
+            {
+                Damage(this.bc.inimigos[i], dano);
+            }
+            
         }
     }
 
-    public void triggerIntensifyEffect()
-    {
-        for (int i = 0; i < this.bc.inimigos.Count; i++)
-        {
-            Damage(this.bc.inimigos[i]); // que efeito é esse mesmo???
-        }
-    }
-
-    private void Damage(Entity target) // recebe o alvo
+    private int Damage(Entity target, int dano) // recebe o alvo
     {
         Debug.Log(target);
-        float damage = 10 / (1 + target.defesa / 100);        
+        float damage = dano / (1 + target.defesa / 100);        
         target.vida -= (int) damage;       
-        target.hpbar.Sethealth(target.vida);   
+        target.hpbar.Sethealth(target.vida);
+        return (int)damage;
     }
 
     private void Cura(Entity aliados, int damage)
     {
-        aliados.vida += damage * (1 / 4);
-    }
-
-    private void LowerDefense(Entity target)
-    {
-        float LwrDmg = target.defesa - 5;
-        target.defesa -= (int) LwrDmg;
+        aliados.vida += (int) (damage * 0.25);
     }
 }
 

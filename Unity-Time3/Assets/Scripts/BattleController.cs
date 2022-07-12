@@ -112,11 +112,6 @@ public class BattleController : MonoBehaviour
         currentState.triggerCutEffect();
     }
 
-    public void triggerIntensifyEffect()
-    {
-        currentState.triggerIntensifyEffect();
-    }
-
     public void AtivaTipos()// faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
     {
         tiposPanel.SetActive(true);

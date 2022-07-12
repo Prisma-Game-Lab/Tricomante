@@ -5,7 +5,7 @@ using UnityEngine;
 public class FluxoBatalha : MonoBehaviour
 {
     public BattleController battleController;
-    private int jogadorAtual;
+    public int jogadorAtual;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,15 @@ public class FluxoBatalha : MonoBehaviour
 
         if (jogador.burn)
         {
+            Debug.Log("Burn");
             jogador.Burn();
         }
+
+        if (jogador.blind)
+        {
+            jogador.Blind();
+        }
+
         if (jogador.tipo == Entity.Tipo.Player)
         {
             battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes 
@@ -46,6 +53,7 @@ public class FluxoBatalha : MonoBehaviour
 
     private IEnumerator AcaoInimigo()
     {
+        Debug.Log("Turno do inimigo");
         yield return new WaitForSeconds(2);
         AvancaJogador();
     }
