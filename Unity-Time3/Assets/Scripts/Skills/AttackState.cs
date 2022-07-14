@@ -15,29 +15,61 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerWaterEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
-        for (int i = 0; i < this.bc.inimigos.Count; i++)
+        if (this.bc.personagens[this.bc.fluxo.jogadorAtual] in this.bc.aliados)
         {
-            Damage(this.bc.inimigos[i], dano);
+            for (int i = 0; i < this.bc.inimigos.Count; i++)
+            {
+                Damage(this.bc.inimigos[i], dano);
+            }
+            this.bc.fluxo.AvancaJogador();
         }
-        this.bc.fluxo.AvancaJogador();
+        else
+        {
+            for (int i = 0; i < this.bc.inimigos.Count; i++)
+            {
+                Damage(this.bc.inimigos[i], dano);
+            }
+            this.bc.fluxo.AvancaJogador();
+        }
+        
     }
 
     public void triggerFireEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.fireDamage;
         int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;
-        for (int i = 0; i < this.bc.inimigos.Count; i++)
+        if (this.bc.personagens[this.bc.fluxo.jogadorAtual] in this.bc.aliados)
         {
-            Damage(this.bc.inimigos[i], dano);
-            int burnChance= Random.Range(1,101);
-            
-            if (burnChance <= chanceFogo )
+            for (int i = 0; i < this.bc.inimigos.Count; i++)
             {
-                this.bc.inimigos[i].burn = true;
-                this.bc.inimigos[i].burnCounter = 3;
-            }
+                Damage(this.bc.inimigos[i], dano);
+                int burnChance = Random.Range(1, 101);
 
+                if (burnChance <= chanceFogo)
+                {
+                    this.bc.inimigos[i].burn = true;
+                    this.bc.inimigos[i].burnCounter = 3;
+                }
+
+            }
         }
+        else
+        {
+            for (int i = 0; i < this.bc.aliados.Count; i++)
+            {
+                Damage(this.bc.aliados[i], dano);
+                int burnChance = Random.Range(1, 101);
+
+                if (burnChance <= chanceFogo)
+                {
+                    this.bc.inimigos[i].burn = true;
+                    this.bc.inimigos[i].burnCounter = 3;
+                }
+
+            }
+        }
+
+        
         this.bc.fluxo.AvancaJogador();
     }
 

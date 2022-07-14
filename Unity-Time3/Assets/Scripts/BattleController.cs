@@ -11,7 +11,7 @@ public class BattleController : MonoBehaviour
     [HideInInspector]public GameObject activeJogador;//[HideInInspector] serve para ocultar a referencia desejada 
     [HideInInspector]public GameObject activeInimigo;//criando referencias (activeJogador,activeInimigo) do GameObject
 
-    public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, idependente do tipo do personagem(aliado ou inimigo) 
+    public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, independente do tipo do personagem(aliado ou inimigo) 
 
     [HideInInspector]public List<Entity> aliados = new List<Entity>();
 

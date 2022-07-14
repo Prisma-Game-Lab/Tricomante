@@ -52,12 +52,49 @@ public class FluxoBatalha : MonoBehaviour
     }
 
     private IEnumerator AcaoInimigo()
-    {
+    { 
         Debug.Log("Turno do inimigo");
+        EscolheRunas()
         yield return new WaitForSeconds(2);
         AvancaJogador();
     }
+    public void EscolheRunas()
+    {
+        // se sortear 1 - ataque, se sortear 2 - defesa, se sortear 3 - suporte
+        int tipo = Random.Range(1, 4);
+        int elemento = Random.Range(1, 8);
+        // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
 
+        battlecontroler.ButtomChangeState(tipo);
+        if (elemento == 1)
+        {
+            battleController.triggerWaterEffect();
+        }
+        else if (elemento == 2)
+        {
+            battleController.triggerFireEffect();
+        }
+        else if (elemento == 3)
+        {
+            battleController.triggerEarthEffect();
+        }
+        else if (elemento == 4)
+        {
+            battleController.triggerCureEffect();
+        }
+        else if (elemento == 5)
+        {
+            battleController.triggerPunchEffect();
+        }
+        else if (elemento == 6)
+        {
+            battleController.triggerPierceEffect()
+        }
+        else
+        {
+            battleController.triggerCutEffect()
+        }
+    }
 
     // Update is called once per frame
     void Update()
