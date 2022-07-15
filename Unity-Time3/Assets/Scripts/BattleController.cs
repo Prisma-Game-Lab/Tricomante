@@ -49,6 +49,27 @@ public class BattleController : MonoBehaviour
         _deffenceState = new DeffenceState(this);
         currentState = _attackState;
     }
+    public void SetTarget(Entity ent)
+    {
+        if (target)
+        {
+            target.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        target = ent;
+        target.GetComponent<SpriteRenderer>().color = new Color(1, 0, 1, 1);
+    }
+    public void ResetTarget()
+    {
+        if (target)
+        {
+            target.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+    }
+    public void FinishMove()
+    {
+        DesativaElementos();
+        fluxo.AvancaJogador();
+    }
 
     public void setState(IState newState)
     {
@@ -76,51 +97,57 @@ public class BattleController : MonoBehaviour
         personagens.Sort((b, a) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
         
     }
-
+    
     public void triggerWaterEffect()
     {
         currentState.triggerWaterEffect();
+        FinishMove();
     }
 
     public void triggerFireEffect()
     {
-        currentState.triggerFireEffect();      
+        currentState.triggerFireEffect();
+        FinishMove();
     }
 
     public void triggerEarthEffect()
     {
-        currentState.triggerEarthEffect();       
+        currentState.triggerEarthEffect();
+        FinishMove();
     }
 
     public void triggerCureEffect()
     {
         currentState.triggerCureEffect();
+        FinishMove();
     }
 
     public void triggerPunchEffect()
     {
         currentState.triggerPunchEffect();
+        FinishMove();
     }
 
     public void triggerPierceEffect()
     {
         currentState.triggerPierceEffect();
+        FinishMove();
     }
 
     public void triggerCutEffect()
     {
         currentState.triggerCutEffect();
+        FinishMove();
     }
 
-    public void AtivaTipos()// faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
+    public void AtivaTipos() // faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
     {
         tiposPanel.SetActive(true);
     }
-    public void DesativaElementos()//nesse caso desativa o painel dos elementos, que por consequencia desativa o painel dos tipos 
+    public void DesativaElementos() //nesse caso desativa o painel dos elementos
     {
         elementosPanel.SetActive(false);
     }
-
     
     public void ButtonChangeState(int i)
     {

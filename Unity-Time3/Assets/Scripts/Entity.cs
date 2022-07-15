@@ -22,12 +22,18 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public string tipoResistencia;
     public int sorte;
 
+    public float accuracy = 1; 
+
     public bool burn;
     public bool blind;
     public bool dodge;
     public int burnCounter;
     public int blindCounter;
     public int dodgeCounter;
+
+    public int maxBurnCounter = 3;
+    public int maxBlindCounter = 2;
+    public int maxDodgeCounter = 2;
 
 
     public AttackStatesSetup attackStatesSetup;
@@ -37,9 +43,9 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     {
         battleController = FindObjectOfType<BattleController>();
         LoadInitialState();
-        burnCounter = 3;
-        blindCounter = 2;
-        dodgeCounter = 2;
+        burnCounter = maxBurnCounter;
+        blindCounter = maxBlindCounter;
+        dodgeCounter = maxDodgeCounter;
     }
 
     private void OnValidate()
@@ -73,17 +79,19 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
         if (this.burnCounter <= 0)
         {
+            burnCounter = maxBurnCounter;
             burn = false;
         }
     }
 
     public void Blind()
     {
-        this.agilidade -= 5;
+        this.accuracy = .75f;
         this.blindCounter--;
 
         if (this.blindCounter <= 0)
         {
+            blindCounter = maxBlindCounter;
             blind = false;
         }
     }
@@ -91,10 +99,11 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public void Dodge()
     {
         this.agilidade += 5;
-        this.dodgeCounter --;
+        this.dodgeCounter--;
 
         if (this.dodgeCounter <= 0)
         {
+            dodgeCounter = maxDodgeCounter;
             dodge = false;
         } 
     }
@@ -107,6 +116,8 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
     public void removeVida(int quantidade)
     {
+
+        
         this.vida -= quantidade;
         this.hpbar.Sethealth(this.vida);
         if(vida < 0)
@@ -118,6 +129,7 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     private void die()
     {
         battleController.personagens.Remove(this);
+        battleController.aliados.Remove(this);
         this.gameObject.SetActive(false);
 
     }
@@ -126,7 +138,7 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        battleController.target = this; 
+        battleController.SetTarget(this);
     }
     
 }

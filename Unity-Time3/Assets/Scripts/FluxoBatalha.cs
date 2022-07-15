@@ -6,6 +6,7 @@ public class FluxoBatalha : MonoBehaviour
 {
     public BattleController battleController;
     public int jogadorAtual;
+    public Entity lastPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,19 @@ public class FluxoBatalha : MonoBehaviour
     }
     public void AvancaJogador()//criando uma funcao que contra o fluxo de turno de cada personagem 
     {
-
+        battleController.ResetTarget();
+        if (lastPlayer)
+        {
+            lastPlayer.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+        }
+        
         var jogador = SetJogador();
+        lastPlayer = jogador;
+
+        jogador.gameObject.transform.localScale = new Vector3(2f, 2f, 1);
 
         if (jogador.burn)
         {
-            Debug.Log("Burn");
             jogador.Burn();
         }
 
@@ -32,8 +40,7 @@ public class FluxoBatalha : MonoBehaviour
 
         if (jogador.tipo == Entity.Tipo.Player)
         {
-            battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes 
-
+            battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes
         }
         else
         {
@@ -54,14 +61,15 @@ public class FluxoBatalha : MonoBehaviour
     private IEnumerator AcaoInimigo()
     { 
         Debug.Log("Turno do inimigo");
+        yield return new WaitForSeconds(1);
+        battleController.SetTarget(battleController.aliados[(int)Random.Range(0, battleController.aliados.Count)]);
+        yield return new WaitForSeconds(1);
         EscolheRunas();
-        yield return new WaitForSeconds(2);
-        AvancaJogador();
     }
     public void EscolheRunas()
     {
         // se sortear 1 - ataque, se sortear 2 - defesa, se sortear 3 - suporte
-        int tipo = Random.Range(1, 4);
+        int tipo = Random.Range(0, 1);
         int elemento = Random.Range(1, 8);
         // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
 
@@ -94,11 +102,5 @@ public class FluxoBatalha : MonoBehaviour
         {
             battleController.triggerCutEffect();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

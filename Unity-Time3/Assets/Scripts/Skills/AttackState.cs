@@ -21,7 +21,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
             {
                 Damage(this.bc.target, dano);
             }
-            this.bc.fluxo.AvancaJogador();
         }
         else
         {
@@ -29,9 +28,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
             {
                 Damage(this.bc.target, dano);
             }
-            this.bc.fluxo.AvancaJogador();
         }
-        
     }
 
     public void triggerFireEffect()
@@ -45,12 +42,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         if (burnChance <= chanceFogo)
         {
             this.bc.target.burn = true;
-            this.bc.target.burnCounter = 3;
         }
-                    
-
         
-        this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerEarthEffect()
@@ -63,10 +56,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         if (blindChance <= chanceBlind)
         {
             this.bc.target.blind = true;
-            this.bc.target.blindCounter = 3;
         }
         
-        this.bc.fluxo.AvancaJogador();
     }
 
     public void triggerCureEffect()
@@ -110,7 +101,10 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     private int Damage(Entity target, int dano) // recebe o alvo
     {
-        Debug.Log(target);
+        if (!target)
+        {
+            return 0;
+        }
         float damage = dano / (1 + target.defesa / 100);        
         target.removeVida((int) damage);       
         return (int)damage;
