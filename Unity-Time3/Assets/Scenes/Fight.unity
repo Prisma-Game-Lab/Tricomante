@@ -157,16 +157,20 @@ MonoBehaviour:
   tipo: 1
   hpbar: {fileID: 122495651}
   personagem: {fileID: 11400000, guid: b2b9aaf40fd4273448d3ea6bea935e3b, type: 2}
-  vida: 30
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 80
+  energia: 150
+  agilidade: 110
+  defesa: 70
   tipoResistencia: 
-  sorte: 0
+  sorte: 80
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: 6a4273a9ec12d2d44be5ceae2ac3c9ab, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!212 &99281795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -227,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99281793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.03, y: 5.77, z: 0}
+  m_LocalPosition: {x: 3.89, y: 5.77, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -483,9 +487,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1604,7 +1608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297359098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.17, y: 5.77, z: 0}
+  m_LocalPosition: {x: 1.56, y: 5.77, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1626,16 +1630,20 @@ MonoBehaviour:
   tipo: 1
   hpbar: {fileID: 2008742378}
   personagem: {fileID: 11400000, guid: 31339c012ab043644b1bea8c40fc5faa, type: 2}
-  vida: 30
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 100
+  energia: 100
+  agilidade: 100
+  defesa: 100
   tipoResistencia: 
-  sorte: 0
+  sorte: 100
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: 2233cd5d67c674a4783af2537676800b, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!58 &297359102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2092,8 +2100,7 @@ MonoBehaviour:
   fluxo: {fileID: 427857249}
   tiposPanel: {fileID: 2069966099}
   elementosPanel: {fileID: 843410307}
-  activeJogador: {fileID: 0}
-  activeInimigo: {fileID: 0}
+  target: {fileID: 0}
   personagens:
   - {fileID: 785292689}
   - {fileID: 2001367873}
@@ -2132,6 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleController: {fileID: 427857247}
+  jogadorAtual: 0
 --- !u!1 &453981666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,16 +2377,20 @@ MonoBehaviour:
   tipo: 0
   hpbar: {fileID: 759746705}
   personagem: {fileID: 11400000, guid: 166b331688720cf4580be9f0486db9d9, type: 2}
-  vida: 0
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 120
+  energia: 70
+  agilidade: 80
+  defesa: 70
   tipoResistencia: 
-  sorte: 0
+  sorte: 55
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: 54bb043f9af730d44a0a7a8d573f333e, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!212 &534636084
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2750,16 +2762,20 @@ MonoBehaviour:
   tipo: 1
   hpbar: {fileID: 1642091657}
   personagem: {fileID: 11400000, guid: 6c3fd8ecc114bb8448893c3a30dd912e, type: 2}
-  vida: 30
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 120
+  energia: 70
+  agilidade: 80
+  defesa: 70
   tipoResistencia: 
-  sorte: 0
+  sorte: 55
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: a305e65636ae50e419b6fb4137a251d7, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!212 &653041675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3032,7 +3048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35.600037, y: -501.7}
+  m_AnchoredPosition: {x: 35.600098, y: -501.7}
   m_SizeDelta: {x: 374.3368, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &759746705
@@ -3094,9 +3110,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 120
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 120
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3201,16 +3217,20 @@ MonoBehaviour:
   tipo: 0
   hpbar: {fileID: 3124245635982658557}
   personagem: {fileID: 11400000, guid: b436152935fcf1049911b9a586d5a9ce, type: 2}
-  vida: 0
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 100
+  energia: 100
+  agilidade: 100
+  defesa: 100
   tipoResistencia: 
-  sorte: 0
+  sorte: 100
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: 3d0020b40c33bf945b36e2cec0236038, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!61 &785292690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3416,7 +3436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -59.369873, y: 37.399963}
+  m_AnchoredPosition: {x: -59.369873, y: 37.399902}
   m_SizeDelta: {x: 814.94995, y: 502.14}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &843410309
@@ -4742,9 +4762,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5461,9 +5481,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 120
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 120
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5959,7 +5979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 34.17993, y: -53.700012}
+  m_AnchoredPosition: {x: 34.17993, y: -53.69995}
   m_SizeDelta: {x: 734.3, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1898847614
@@ -6342,16 +6362,20 @@ MonoBehaviour:
   tipo: 0
   hpbar: {fileID: 1420859006}
   personagem: {fileID: 11400000, guid: 7b4e1a62600c23347938f54ea0ea8c52, type: 2}
-  vida: 0
-  energia: 0
-  agilidade: 0
-  defesa: 0
+  vida: 50
+  energia: 150
+  agilidade: 110
+  defesa: 70
   tipoResistencia: 
-  sorte: 0
+  sorte: 80
   burn: 0
   blind: 0
+  dodge: 0
   burnCounter: 0
   blindCounter: 0
+  dodgeCounter: 0
+  attackStatesSetup: {fileID: 11400000, guid: d708b0e76c39a1b4e99f662a2e95943f, type: 2}
+  deffenseStatesSetup: {fileID: 0}
 --- !u!212 &2001367874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6518,9 +6542,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6764,9 +6788,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Entity : MonoBehaviour //, IPointerClickHandler
+public class Entity : MonoBehaviour , IPointerClickHandler
 {
 
     public enum Tipo { Player, Inimigo };
@@ -36,10 +36,15 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
     private void Awake()
     {
         battleController = FindObjectOfType<BattleController>();
-        LoadSetup();
+        LoadInitialState();
         burnCounter = 3;
         blindCounter = 2;
         dodgeCounter = 2;
+    }
+
+    private void OnValidate()
+    {
+        LoadSetup();
     }
 
     private void LoadSetup()
@@ -50,7 +55,10 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
         defesa = personagem.defesa;
         tipoResistencia = personagem.tipoResistencia;
         sorte = personagem.sorte;
+    }
 
+    private void LoadInitialState()
+    {
         this.hpbar.SetMaxhealth(vida);
 
         burn = false;
@@ -109,24 +117,16 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
 
     private void die()
     {
-        battleController.jogadores.Remove(this);
+        battleController.personagens.Remove(this);
         this.gameObject.SetActive(false);
 
     }
 
    
-    /*
+    
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(tipo == Tipo.Player)
-        {
-            //battleController.player = this.gameObject;
-            
-        }
-        else
-        {
-            //battleController.inimigo = this.gameObject;
-        }
+        battleController.target = this; 
     }
-    */
+    
 }
