@@ -35,7 +35,7 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
 
     private void Awake()
     {
-        //battleController = FindObjectOfType<BattleController>();
+        battleController = FindObjectOfType<BattleController>();
         LoadSetup();
         burnCounter = 3;
         blindCounter = 2;
@@ -60,8 +60,7 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
 
     public void Burn()
     {
-        this.vida -= 5;
-        this.hpbar.Sethealth(this.vida);
+        removeVida(5);
         this.burnCounter--;
 
         if (this.burnCounter <= 0)
@@ -95,6 +94,23 @@ public class Entity : MonoBehaviour //, IPointerClickHandler
     public void maisDefesa()
     {
 
+
+    }
+
+    public void removeVida(int quantidade)
+    {
+        this.vida -= quantidade;
+        this.hpbar.Sethealth(this.vida);
+        if(vida < 0)
+        {
+            die();
+        }
+    }
+
+    private void die()
+    {
+        battleController.jogadores.Remove(this);
+        this.gameObject.SetActive(false);
 
     }
 

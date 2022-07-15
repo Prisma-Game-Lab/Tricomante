@@ -15,7 +15,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerWaterEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
-        if (this.bc.personagens[this.bc.fluxo.jogadorAtual] in this.bc.aliados)
+        if (this.bc.aliados.Contains(this.bc.personagens[this.bc.fluxo.jogadorAtual]))
         {
             for (int i = 0; i < this.bc.inimigos.Count; i++)
             {
@@ -38,7 +38,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.fireDamage;
         int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;
-        if (this.bc.personagens[this.bc.fluxo.jogadorAtual] in this.bc.aliados)
+        if (this.bc.aliados.Contains(this.bc.personagens[this.bc.fluxo.jogadorAtual]))
         {
             for (int i = 0; i < this.bc.inimigos.Count; i++)
             {
@@ -139,8 +139,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     {
         Debug.Log(target);
         float damage = dano / (1 + target.defesa / 100);        
-        target.vida -= (int) damage;       
-        target.hpbar.Sethealth(target.vida);
+        target.removeVida((int) damage);       
         return (int)damage;
     }
 

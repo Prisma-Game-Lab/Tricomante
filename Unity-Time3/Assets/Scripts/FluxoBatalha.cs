@@ -54,7 +54,7 @@ public class FluxoBatalha : MonoBehaviour
     private IEnumerator AcaoInimigo()
     { 
         Debug.Log("Turno do inimigo");
-        EscolheRunas()
+        EscolheRunas();
         yield return new WaitForSeconds(2);
         AvancaJogador();
     }
@@ -65,7 +65,7 @@ public class FluxoBatalha : MonoBehaviour
         int elemento = Random.Range(1, 8);
         // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
 
-        battlecontroler.ButtomChangeState(tipo);
+        battleController.ButtonChangeState(tipo);
         if (elemento == 1)
         {
             battleController.triggerWaterEffect();
@@ -88,11 +88,11 @@ public class FluxoBatalha : MonoBehaviour
         }
         else if (elemento == 6)
         {
-            battleController.triggerPierceEffect()
+            battleController.triggerPierceEffect();
         }
         else
         {
-            battleController.triggerCutEffect()
+            battleController.triggerCutEffect();
         }
     }
 
