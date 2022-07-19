@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DeffensekStates", menuName = "DeffenseStates")]
+[CreateAssetMenu(fileName = "DeffensesStates", menuName = "DeffensesStates")]
 public class DeffenseStatesSetup : ScriptableObject
 {
     [Header("Atributos de defesa")]
-    public int waterdeffense;
-    public int firedeffense;
-    public int cutdeffense;
-    public int curedeffense;
-    public int piercedeffense;
-    public int punchdeffense;
-    public int earthdeffense;
+    public int waterDeffense;
+    public int fireDeffense;
+    public int cutDeffense;
+    public int cureDeffense;
+    public int pierceDeffense;
+    public int punchDeffense;
+    public int earthDeffense;
 
     [Header("Estatisticas")]
     public float Dodge;
