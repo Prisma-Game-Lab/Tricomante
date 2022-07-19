@@ -27,13 +27,16 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public bool burn;
     public bool blind;
     public bool dodge;
+    public bool critic;
     public int burnCounter;
     public int blindCounter;
     public int dodgeCounter;
+    public int criticCounter;
 
     public int maxBurnCounter = 3;
     public int maxBlindCounter = 2;
     public int maxDodgeCounter = 2;
+    public int maxCriticCounter = 3;
 
 
     public AttackStatesSetup attackStatesSetup;
@@ -137,11 +140,34 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     {
         battleController.personagens.Remove(this);
         battleController.aliados.Remove(this);
+        battleController.mortos.Add(this);
         this.gameObject.SetActive(false);
 
     }
 
-   
+    public void revive()
+    {
+        battleController.personagens.Add(this);
+        battleController.aliados.Add(this);
+        battleController.mortos.Remove(this);
+        setVida(personagem.vida/5);
+    }
+
+    public void danoCritico()
+    {
+        
+
+        this.criticCounter--;
+
+        if(this.criticCounter <= 0)
+        {
+            criticCounter = maxCriticCounter;
+            critic = false;
+
+        }
+    }
+
+
     
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -24,9 +24,6 @@ public class HealthBarController : MonoBehaviour
     {
         //TODO: consertar o problema da batalha acabar quando um personagem morre
         slider.value=health;
-        if (slider.value <= 0)
-        {
-            sceneController.LoadScene("Game");
-        }
+       
     }
 }
