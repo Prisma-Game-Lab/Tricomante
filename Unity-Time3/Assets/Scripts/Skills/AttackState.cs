@@ -15,18 +15,20 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerWaterEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
-        if (this.bc.aliados.Contains(this.bc.personagens[this.bc.fluxo.jogadorAtual]))
+        if (this.bc.personagens[this.bc.fluxo.jogadorAtual].tipo == Entity.Tipo.Player)
         {
             for (int i = 0; i < this.bc.inimigos.Count; i++)
             {
-                Damage(this.bc.target, dano);
+                Debug.Log("ataque aliado");
+                Damage(this.bc.inimigos[i], dano);
             }
         }
         else
         {
-            for (int i = 0; i < this.bc.inimigos.Count; i++)
+            for (int i = 0; i < this.bc.aliados.Count; i++)
             {
-                Damage(this.bc.target, dano);
+                Debug.Log("ataque inimigo");
+                Damage(this.bc.aliados[i], dano);
             }
         }
     }
