@@ -114,16 +114,23 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
     }
 
-    public void removeVida(int quantidade)
+    public void setVida(int hp)
     {
-
-        
-        this.vida -= quantidade;
+        this.vida = hp;
         this.hpbar.Sethealth(this.vida);
-        if(vida < 0)
+        if (vida < 0)
         {
             die();
         }
+    }
+    public void adicionaVida(int quantidade)
+    {
+        setVida(vida + quantidade);
+    }
+
+    public void removeVida(int quantidade)
+    {
+        setVida(vida - quantidade);
     }
 
     private void die()

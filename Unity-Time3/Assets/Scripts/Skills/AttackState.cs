@@ -19,7 +19,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             for (int i = 0; i < this.bc.inimigos.Count; i++)
             {
-                Debug.Log("ataque aliado");
                 Damage(this.bc.inimigos[i], dano);
             }
         }
@@ -27,7 +26,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             for (int i = 0; i < this.bc.aliados.Count; i++)
             {
-                Debug.Log("ataque inimigo");
                 Damage(this.bc.aliados[i], dano);
             }
         }
@@ -59,7 +57,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             this.bc.target.blind = true;
         }
-        
     }
 
     public void triggerCureEffect()
@@ -67,7 +64,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cureDamage;
         
         int damage = Damage(this.bc.target, dano);
-        Cura(this.bc.target, damage);
+        Cura(this.bc.personagens[this.bc.fluxo.jogadorAtual], damage);
         
     }
 
@@ -78,7 +75,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         
         Damage(this.bc.target, dano);
         this.bc.target.defesa -= 5;
-        
     }
 
     public void triggerPierceEffect()
@@ -97,8 +93,6 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             Damage(this.bc.target, dano);
         }
-            
-        
     }
 
     private int Damage(Entity target, int dano) // recebe o alvo
@@ -112,9 +106,9 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         return (int)damage;
     }
 
-    private void Cura(Entity aliados, int damage)
+    private void Cura(Entity aliado, int damage)
     {
-        aliados.vida += (int) (damage * 0.25);
+        aliado.adicionaVida((int) (damage * 0.25f));
     }
 }
 

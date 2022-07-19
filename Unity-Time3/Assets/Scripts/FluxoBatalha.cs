@@ -11,7 +11,7 @@ public class FluxoBatalha : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      jogadorAtual = 0;
+      jogadorAtual = 1000;
       AvancaJogador();//chamando a funcao para a mesma ser executada
       
     }
@@ -24,6 +24,7 @@ public class FluxoBatalha : MonoBehaviour
         }
         
         var jogador = SetJogador();
+        Debug.Log(jogador);
         lastPlayer = jogador;
 
         jogador.gameObject.transform.localScale = new Vector3(2f, 2f, 1);
@@ -55,8 +56,10 @@ public class FluxoBatalha : MonoBehaviour
             jogadorAtual = 0;
             return battleController.personagens[jogadorAtual];
         }
-        return battleController.personagens[jogadorAtual++];
+        return battleController.personagens[++jogadorAtual];
     }
+
+
 
     private IEnumerator AcaoInimigo()
     { 
