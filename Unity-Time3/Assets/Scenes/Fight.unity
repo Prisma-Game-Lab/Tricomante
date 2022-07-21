@@ -161,18 +161,21 @@ MonoBehaviour:
   energia: 150
   agilidade: 110
   defesa: 70
-  tipoResistencia: 
+  resistencia: 0
   sorte: 80
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: 6a4273a9ec12d2d44be5ceae2ac3c9ab, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!212 &99281795
@@ -1638,18 +1641,21 @@ MonoBehaviour:
   energia: 100
   agilidade: 100
   defesa: 100
-  tipoResistencia: 
+  resistencia: 100
   sorte: 100
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: 2233cd5d67c674a4783af2537676800b, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!58 &297359102
@@ -1984,8 +1990,8 @@ MonoBehaviour:
   - {fileID: 653041674}
   aliados: []
   inimigos: []
+  mortos: []
   elementos: []
-  DamageTextPrefab: {fileID: 4733084653581137897, guid: 92693cd4042c7054691a277d39b70826, type: 3}
 --- !u!4 &427857248
 Transform:
   m_ObjectHideFlags: 0
@@ -2257,18 +2263,21 @@ MonoBehaviour:
   energia: 70
   agilidade: 80
   defesa: 70
-  tipoResistencia: 
+  resistencia: 10
   sorte: 55
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: 54bb043f9af730d44a0a7a8d573f333e, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!212 &534636084
@@ -2376,18 +2385,21 @@ MonoBehaviour:
   energia: 70
   agilidade: 80
   defesa: 70
-  tipoResistencia: 
+  resistencia: 10
   sorte: 55
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: a305e65636ae50e419b6fb4137a251d7, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!212 &653041675
@@ -2835,18 +2847,21 @@ MonoBehaviour:
   energia: 100
   agilidade: 100
   defesa: 100
-  tipoResistencia: 
+  resistencia: 100
   sorte: 100
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: 3d0020b40c33bf945b36e2cec0236038, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!61 &785292690
@@ -5848,18 +5863,21 @@ MonoBehaviour:
   energia: 150
   agilidade: 110
   defesa: 70
-  tipoResistencia: 
+  resistencia: 10
   sorte: 80
-  accuracy: 1
+  minAccuracy: 0.25
   burn: 0
   blind: 0
   dodge: 0
+  critic: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
+  criticCounter: 0
   maxBurnCounter: 3
   maxBlindCounter: 2
   maxDodgeCounter: 2
+  maxCriticCounter: 3
   attackStatesSetup: {fileID: 11400000, guid: d708b0e76c39a1b4e99f662a2e95943f, type: 2}
   deffenseStatesSetup: {fileID: 0}
 --- !u!212 &2001367874

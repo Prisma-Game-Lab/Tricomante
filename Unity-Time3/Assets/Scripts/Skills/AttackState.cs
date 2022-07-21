@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackState : IState // SIgnifica que essa classe herda de, ou seja tem todas as fun��es dessa classe que ela herda: a extens�o, podendo ser mais espec�ficas, e a implementa��o, podendo ter outras funcionalidades
 {
     private BattleController bc; // Criar uma vari�vel do tipo battleController
-
+    private Entity ety;
 
     public AttackState(BattleController _bc)
     {
@@ -34,7 +34,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerFireEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.fireDamage;
-        int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;    
+        int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;
 
         Damage(this.bc.target, dano);
         int burnChance = Random.Range(1, 101);
@@ -43,7 +43,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             this.bc.target.burn = true;
         }
-        
+
     }
 
     public void triggerEarthEffect()
@@ -52,7 +52,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         int chanceBlind = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.blindChance;
         Damage(this.bc.target, dano);
         int blindChance = Random.Range(1, 101);
-            
+
         if (blindChance <= chanceBlind)
         {
             this.bc.target.blind = true;
@@ -62,17 +62,17 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerCureEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cureDamage;
-        
+
         int damage = Damage(this.bc.target, dano);
         Cura(this.bc.personagens[this.bc.fluxo.jogadorAtual], damage);
-        
+
     }
 
 
     public void triggerPunchEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.punchDamage;
-        
+
         Damage(this.bc.target, dano);
         this.bc.target.defesa -= 5;
     }
@@ -80,30 +80,46 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerPierceEffect()
     {
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.pierceDamage;
-              
+
         this.bc.target.vida -= dano;
         this.bc.target.hpbar.Sethealth(this.bc.target.vida);
-        
+
     }
 
     public void triggerCutEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cutDamage; 
+        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cutDamage;
         for (int j = 0; j < 3; j++)
         {
             Damage(this.bc.target, dano);
         }
     }
 
-    private int Damage(Entity target, int dano) // recebe o alvo
+    private int Damage(Entity target, int dano)
     {
-        if (!target)
+        float accuracy;
+
+        if (target.blind)
+        {
+            accuracy = Random.Range(0.0f, 1.0f);
+        }
+        else
+        {
+            accuracy = 2.0f;
+        }
+
+        Debug.Log(accuracy);
+
+        if (target && accuracy > this.bc.personagens[this.bc.fluxo.jogadorAtual].minAccuracy)
+        {           
+            float damage = dano / (1 + target.defesa / 100);
+            target.removeVida((int) damage);       
+            return (int) damage;
+        }
+        else
         {
             return 0;
         }
-        float damage = dano / (1 + target.defesa / 100);        
-        target.removeVida((int) damage);       
-        return (int)damage;
     }
 
     private void Cura(Entity aliado, int damage)

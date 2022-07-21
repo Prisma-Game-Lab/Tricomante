@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Entity : MonoBehaviour , IPointerClickHandler
 {
-
     public enum Tipo { Player, Inimigo };
     public Tipo tipo;
 
@@ -19,10 +18,10 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public int energia;
     public int agilidade;
     public int defesa;
-    public string tipoResistencia;
+    public int resistencia;
     public int sorte;
 
-    public float accuracy = 1; 
+    public float minAccuracy = 0.25f; 
 
     public bool burn;
     public bool blind;
@@ -32,7 +31,7 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public int blindCounter;
     public int dodgeCounter;
     public int criticCounter;
-
+    
     public int maxBurnCounter = 3;
     public int maxBlindCounter = 2;
     public int maxDodgeCounter = 2;
@@ -62,7 +61,7 @@ public class Entity : MonoBehaviour , IPointerClickHandler
         energia = personagem.energia;
         agilidade = personagem.agilidade;
         defesa = personagem.defesa;
-        tipoResistencia = personagem.tipoResistencia;
+        resistencia = personagem.resistencia;
         sorte = personagem.sorte;
     }
 
@@ -89,12 +88,13 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
     public void Blind()
     {
-        this.accuracy = .75f;
+        float accuracy =minAccuracy - (0.25f * minAccuracy);
         this.blindCounter--;
 
         if (this.blindCounter <= 0)
         {
             blindCounter = maxBlindCounter;
+            accuracy = this.minAccuracy;
             blind = false;
         }
     }
