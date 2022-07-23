@@ -13,37 +13,29 @@ public class DeffenceState : IState
 
     public void triggerWaterEffect() //o efeito da agua na defesa da uma chance de esquva do ataque 
     {
-        /*
-        int defesa = this.bc.personagens[this.fluxo.jogadorAtual].DeffenseStatesSetup.waterdeffense;
-        int chanceDodge = this.bc.personagens[this.bc.fluxo.jogadorAtual].DeffenseStatesSetup.Dodge;
-        for (int i = 0; i < this.bc.aliados.count; i++)
-        {
-            Defense(this.bc.aliados[i],deffense);
-            int Dodge = random.range(1,101);
-            if(Dodge <= chanceDodge )
-            {
-                this.bc.aliados[i].dodge = true;
-                this.bc.aliados[i].dodgeCounter = 2;
-            }
-        }
-        this.fluxo.AvancaJogador();
-        */
+        this.bc.target.dodge = true;
+        
     }
    
 
     public void triggerFireEffect()
     {
-
+        this.bc.target.shallowGrave = true;
     }
 
     public void triggerEarthEffect() //da mais defesa ao personagem e aramzena o dano recebido ate quando ele atacar no proximo turno 
     {
-
+        this.bc.target.defesa += this.bc.GetCurrentPlayer().deffenseStatesSetup.riposte;
+        this.bc.target.riposte = true;
 
     }
 
     public void triggerCureEffect()
     {
+       for (int i = 0; i < this.bc.aliados.Count; i++)
+        {
+            this.bc.aliados[i].tempVida = this.bc.GetCurrentPlayer().deffenseStatesSetup.preventionHp;
+        }
 
     }
 

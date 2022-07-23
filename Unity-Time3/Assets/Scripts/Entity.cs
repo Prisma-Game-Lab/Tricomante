@@ -24,22 +24,32 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int defesa;
     public int resistencia;
     public int sorte;
+    public int tempVida;
 
     public float minAccuracy = 0.25f; 
+    public float minEvase;
 
     [HideInInspector]public bool burn;
     [HideInInspector]public bool blind;
     [HideInInspector]public bool dodge;
     [HideInInspector]public bool critic;
+    [HideInInspector]public bool shallowGrave;
+    [HideInInspector]public bool riposte;
     [HideInInspector]public int burnCounter;
     [HideInInspector]public int blindCounter;
     [HideInInspector]public int dodgeCounter;
     [HideInInspector]public int criticCounter;
+    [HideInInspector]public int shallowGraveCounter;
+    [HideInInspector]public int preventionCounter;
     
+
+    [Header("Contadores")]
     public int maxBurnCounter = 3;
     public int maxBlindCounter = 2;
     public int maxDodgeCounter = 2;
     public int maxCriticCounter = 3;
+    public int maxShallowGraveCounter = 1;
+    public int maxPreventionCounter = 2;
 
 
 
@@ -74,6 +84,9 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         burn = false;
         blind = false;
         dodge = false;
+        shallowGrave = false;
+        riposte = false;
+        tempVida = 0;
     }
 
     public void Burn()
@@ -103,7 +116,6 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
     public void Dodge()
     {
-        this.agilidade += 5;
         this.dodgeCounter--;
 
         if (this.dodgeCounter <= 0)
@@ -113,20 +125,45 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         } 
     }
      
-    public void maisDefesa()
+    public void ShallowGrave()
     {
+        this.shallowGraveCounter--;
 
+        if(this.shallowGraveCounter <= 0)
+        {
+            shallowGraveCounter = maxShallowGraveCounter;
+            shallowGrave = false;
+        }
 
+    }
+     public void Prevention()
+    {
+        this.preventionCounter--;
+
+        if(this.preventionCounter <= 0)
+        {
+            preventionCounter = maxPreventionCounter;
+            tempVida = 0;
+        }
     }
 
     public void setVida(int hp)
     {
         this.vida = hp;
         this.hpbar.SetValue(this.vida);
-        if (vida < 0)
+        if (vida <= 0)
         {
-            die();
+            if (shallowGrave)
+            {
+                this.vida = 1;
+                this.hpbar.SetValue(this.vida);
+            }
+            else
+            {
+                die(); 
+            }
         }
+
     }
 
     public void adicionaVida(int quantidade)

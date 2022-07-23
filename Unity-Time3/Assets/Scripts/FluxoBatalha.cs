@@ -33,6 +33,25 @@ public class FluxoBatalha : MonoBehaviour
             jogador.Burn();
         }
 
+        if (jogador.dodge)
+        {
+            jogador.Dodge();
+        }
+
+        if (jogador.shallowGrave)
+        {
+            jogador.ShallowGrave();
+        }
+
+        if (jogador.tempVida > 0)
+        {
+            jogador.Prevention();
+        }
+        else if (jogador.tempVida <= 0 && jogador.preventionCounter > 0)
+        {
+            jogador.preventionCounter = jogador.maxPreventionCounter;
+        }
+
         if (jogador.blind)
         {
             jogador.Blind();

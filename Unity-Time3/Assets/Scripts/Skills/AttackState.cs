@@ -107,8 +107,9 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     {
         var attacker = bc.GetCurrentPlayer();
         float accuracy;
+        float evase;
 
-        if (target.blind)
+        if (attacker.blind)
         {
             accuracy = Random.Range(0.0f, 1.0f);
         }
@@ -116,15 +117,36 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             accuracy = 2.0f;
         }
+ 
 
-        Debug.Log(accuracy);
+        if (target.dodge)
+        {
+            evase = Random.Range(0.0f, 1.0f);
+        }
+        else
+        {
+            evase = 2.0f;
+        }
 
-        if (target && accuracy > attacker.minAccuracy)
+        if (target && accuracy > attacker.minAccuracy && evase > target.minEvase)
         {
             Debug.Log("Acertou ataque" +
                 "");
             float damage = dano / (1 + target.defesa / 100);
-            target.removeVida((int) damage);       
+            if(target.tempVida > 0)
+            {
+              target.tempVida -= (int) damage;
+            }
+            else
+            {
+             target.removeVida((int) damage);
+            }
+            
+            if(target.riposte)
+            {
+                float riposteDamage = damage * target.deffenseStatesSetup.riposteReturn;
+                attacker.removeVida((int)riposteDamage);
+            }       
             return (int) damage;
         }
         else
@@ -132,6 +154,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
             Debug.Log("Errou ataque");
             return 0;
         }
+    
     }
 
     private void Cura(Entity aliado, int damage)

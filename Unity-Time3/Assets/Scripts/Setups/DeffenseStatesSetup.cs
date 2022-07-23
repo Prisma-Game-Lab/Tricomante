@@ -16,10 +16,15 @@ public class DeffenseStatesSetup : ScriptableObject
     public int earthEnergy;
 
     [Header("Estatisticas")]
-    public float Dodge;
-    public int maisDefesa;
-    public int blindChance;
-    public int defenceReduce;
+    public float dodgeChance;
+    public int protect;
+    public int preventionHp;
+    public int shallowGrave;
+    public int provoke;
+    public int thorns;
+    public int riposte;
+    public float riposteReturn;
+
 
     
 }
