@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     [HideInInspector]public bool riposte;
     [HideInInspector]public bool provoke;
     [HideInInspector]public bool protect;
+    [HideInInspector]public bool thorns;
     [HideInInspector]public int burnCounter;
     [HideInInspector]public int blindCounter;
     [HideInInspector]public int dodgeCounter;
@@ -45,6 +46,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     [HideInInspector]public int preventionCounter;
     [HideInInspector]public int provokeCounter;
     [HideInInspector]public int protectCounter;
+    [HideInInspector]public int thornsCounter;
     public Entity provoker;
     public Entity protector;
     
@@ -57,7 +59,8 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int maxShallowGraveCounter = 1;
     public int maxPreventionCounter = 2;
     public int maxProvokeCounter = 2;
-    public int maxProtectCounter = 2;
+    public int maxProtectCounter = 3;
+    public int maxthornsCounter = 2;
 
 
 
@@ -68,6 +71,12 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         burnCounter = maxBurnCounter;
         blindCounter = maxBlindCounter;
         dodgeCounter = maxDodgeCounter;
+        shallowGraveCounter = maxShallowGraveCounter;
+        preventionCounter = maxPreventionCounter;
+        provokeCounter = maxProvokeCounter;
+        protectCounter = maxProtectCounter;
+        thornsCounter = maxthornsCounter;
+
         LoadSetup();
     }
 
@@ -97,6 +106,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         tempVida = 0;
         provoke = false;
         provoker = null;
+        thorns = false;
     }
 
     public void Burn()
@@ -177,6 +187,16 @@ public class Entity : MonoBehaviour, IPointerClickHandler
             protectCounter = maxProtectCounter;
             protect = false;
             protector = null;
+        }
+    }
+    public void Thorns()
+    {
+        this.thornsCounter--;
+
+        if(this.thornsCounter <= 0)
+        {
+            thornsCounter = maxthornsCounter;
+            thorns = false;
         }
     }
 

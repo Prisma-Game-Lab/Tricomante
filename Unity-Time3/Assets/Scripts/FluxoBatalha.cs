@@ -61,10 +61,15 @@ public class FluxoBatalha : MonoBehaviour
         {
             jogador.Provoke();
         }
-        
+
         if (jogador.protect)
         {
             jogador.Protect();
+        }
+
+        if (jogador.thorns)
+        {
+            jogador.Thorns();
         }
 
         if (jogador.tipo == Entity.Tipo.Player)
@@ -97,13 +102,19 @@ public class FluxoBatalha : MonoBehaviour
         yield return new WaitForSeconds(1);
         EscolheRunas();
     }
+    // convesar sobre o fato do inimigo ter que escolher a acao antes de realizar seu turno 
     public void EscolheRunas()
     {
         // se sortear 1 - ataque, se sortear 2 - defesa, se sortear 3 - suporte
-        int tipo = Random.Range(0, 1);
+        int tipo = Random.Range(0, 2);
         int elemento = Random.Range(1, 8);
         // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
-
+        if(battleController.personagens[jogadorAtual].thorns && tipo == 0)
+        {
+            Debug.Log("entrou");
+            int offset = Random.Range(1,3);
+            tipo += offset;
+        }
         battleController.ButtonChangeState(tipo);
         battleController.SelectEffect((effects) elemento);
         battleController.triggerEffect();

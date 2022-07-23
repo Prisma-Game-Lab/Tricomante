@@ -47,7 +47,7 @@ public class DeffenceState : IState
 
     public void triggerPierceEffect()
     {
-
+         this.bc.target.thorns = true;
     }
 
     public void triggerCutEffect()
