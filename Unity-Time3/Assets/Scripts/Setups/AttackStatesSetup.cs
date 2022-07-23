@@ -15,6 +15,16 @@ public class AttackStatesSetup : ScriptableObject
     public int earthDamage;
 
     [Header("Estatisticas")]
+    public int waterEnergy;
+    public int fireEnergy;
+    public int cutEnergy;
+    public int cureEnergy;
+    public int pierceEnergy;
+    public int punchEnergy;
+    public int earthEnergy;
+
+
+    [Header("Estatisticas")]
     public float heal;
     public int burnChance;
     public int blindChance;

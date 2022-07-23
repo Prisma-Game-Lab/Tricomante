@@ -9,24 +9,25 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public AttackState(BattleController _bc)
     {
-        this.bc = _bc;
+        bc = _bc;
     }
 
     public void triggerWaterEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
-        if (this.bc.personagens[this.bc.fluxo.jogadorAtual].tipo == Entity.Tipo.Player)
+        int dano = bc.personagens[bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
+        ety.removeEnergia(ety.attackStatesSetup.waterDamage);
+        if (bc.personagens[bc.fluxo.jogadorAtual].tipo == Entity.Tipo.Player)
         {
-            for (int i = 0; i < this.bc.inimigos.Count; i++)
+            for (int i = 0; i < bc.inimigos.Count; i++)
             {
-                Damage(this.bc.inimigos[i], dano);
+                Damage(bc.inimigos[i], dano);
             }
         }
         else
         {
             for (int i = 0; i < this.bc.aliados.Count; i++)
             {
-                Damage(this.bc.aliados[i], dano);
+                Damage(bc.aliados[i], dano);
             }
         }
     }
@@ -82,7 +83,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.pierceDamage;
 
         this.bc.target.vida -= dano;
-        this.bc.target.hpbar.Sethealth(this.bc.target.vida);
+        this.bc.target.hpbar.SetValue(this.bc.target.vida);
 
     }
 
@@ -111,13 +112,16 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         Debug.Log(accuracy);
 
         if (target && accuracy > this.bc.personagens[this.bc.fluxo.jogadorAtual].minAccuracy)
-        {           
+        {
+            Debug.Log("Acertou ataque" +
+                "");
             float damage = dano / (1 + target.defesa / 100);
             target.removeVida((int) damage);       
             return (int) damage;
         }
         else
         {
+            Debug.Log("Errou ataque");
             return 0;
         }
     }

@@ -28,6 +28,8 @@ public class BattleController : MonoBehaviour
     private IState _deffenceState;
     private IState currentState;
 
+    private Entity ety;
+
     private void Awake()
     {
         for (int i = 0; i < personagens.Count; i++)
@@ -94,6 +96,13 @@ public class BattleController : MonoBehaviour
     {
         return _supportState;
     }
+    /*
+    public IState GetCurrentState()
+    {
+        IState statusAtual = currentState;
+        return statusAtual;
+    }
+    */
 
 
     private void DefineOrdem()
@@ -104,8 +113,16 @@ public class BattleController : MonoBehaviour
     
     public void triggerWaterEffect()
     {
-        currentState.triggerWaterEffect();
-        FinishMove();
+        if (personagens[fluxo.jogadorAtual].attackStatesSetup.waterDamage <= ety.energia)
+        {
+            currentState.triggerWaterEffect();
+            FinishMove();
+        }
+        else
+        {
+            Debug.Log("Sem energia para esse elemento");
+            AtivaTipos();
+        }
     }
 
     public void triggerFireEffect()
@@ -175,6 +192,11 @@ public class BattleController : MonoBehaviour
     {
         tiposPanel.SetActive(true);
         elementosPanel.SetActive(false);
+    }
+
+    public Entity GetCurrentPlayer()
+    {
+        return personagens[fluxo.jogadorAtual];
     }
 
 }

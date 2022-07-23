@@ -8,9 +8,10 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public enum Tipo { Player, Inimigo };
     public Tipo tipo;
 
-    public HealthBarController hpbar;
+    public BarController hpbar;
     public CharactersSetup personagem;
-    
+    public BarController EnergyBar;
+    public FluxoBatalha fluxo;
 
     private BattleController battleController;
 
@@ -67,7 +68,8 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
     private void LoadInitialState()
     {
-        this.hpbar.SetMaxhealth(vida);
+        this.hpbar.SetMaxValue(vida);
+        this.EnergyBar.SetMaxValue(energia);
 
         burn = false;
         blind = false;
@@ -120,12 +122,13 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public void setVida(int hp)
     {
         this.vida = hp;
-        this.hpbar.Sethealth(this.vida);
+        this.hpbar.SetValue(this.vida);
         if (vida < 0)
         {
             die();
         }
     }
+
     public void adicionaVida(int quantidade)
     {
         setVida(vida + quantidade);
@@ -153,13 +156,29 @@ public class Entity : MonoBehaviour , IPointerClickHandler
         setVida(personagem.vida/5);
     }
 
+    public void setEnergia(int energy)
+    {
+        this.energia = energy;
+        this.hpbar.SetValue(this.energia);
+    }
+
+    public void adicionaEnergia(int quantidade)
+    {
+        setEnergia(energia + quantidade);
+    }
+
+    public void removeEnergia(int quantidade)
+    {
+        setEnergia(energia - quantidade);
+    }
+
     public void danoCritico()
     {
         
 
         this.criticCounter--;
 
-        if(this.criticCounter <= 0)
+        if(this.criticCounter < 0)
         {
             criticCounter = maxCriticCounter;
             critic = false;
