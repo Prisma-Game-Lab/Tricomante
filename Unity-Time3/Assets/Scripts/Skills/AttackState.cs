@@ -14,9 +14,9 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerWaterEffect()
     {
-        int dano = bc.personagens[bc.fluxo.jogadorAtual].attackStatesSetup.waterDamage;
-        ety.removeEnergia(ety.attackStatesSetup.waterDamage);
-        if (bc.personagens[bc.fluxo.jogadorAtual].tipo == Entity.Tipo.Player)
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.waterDamage;
+        if (attacker.tipo == Entity.Tipo.Player)
         {
             for (int i = 0; i < bc.inimigos.Count; i++)
             {
@@ -34,8 +34,10 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerFireEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.fireDamage;
-        int chanceFogo = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.burnChance;
+        var attacker = bc.GetCurrentPlayer();
+
+        int dano = attacker.attackStatesSetup.fireDamage;
+        int chanceFogo = attacker.attackStatesSetup.burnChance;
 
         Damage(this.bc.target, dano);
         int burnChance = Random.Range(1, 101);
@@ -49,8 +51,9 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerEarthEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.earthDamage;
-        int chanceBlind = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.blindChance;
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.earthDamage;
+        int chanceBlind = attacker.attackStatesSetup.blindChance;
         Damage(this.bc.target, dano);
         int blindChance = Random.Range(1, 101);
 
@@ -62,17 +65,19 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerCureEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cureDamage;
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.cureDamage;
 
         int damage = Damage(this.bc.target, dano);
-        Cura(this.bc.personagens[this.bc.fluxo.jogadorAtual], damage);
+        Cura(attacker, damage);
 
     }
 
 
     public void triggerPunchEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.punchDamage;
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.punchDamage;
 
         Damage(this.bc.target, dano);
         this.bc.target.defesa -= 5;
@@ -80,7 +85,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerPierceEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.pierceDamage;
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.pierceDamage;
 
         this.bc.target.vida -= dano;
         this.bc.target.hpbar.SetValue(this.bc.target.vida);
@@ -89,7 +95,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     public void triggerCutEffect()
     {
-        int dano = this.bc.personagens[this.bc.fluxo.jogadorAtual].attackStatesSetup.cutDamage;
+        var attacker = bc.GetCurrentPlayer();
+        int dano = attacker.attackStatesSetup.cutDamage;
         for (int j = 0; j < 3; j++)
         {
             Damage(this.bc.target, dano);
@@ -98,6 +105,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
     private int Damage(Entity target, int dano)
     {
+        var attacker = bc.GetCurrentPlayer();
         float accuracy;
 
         if (target.blind)
@@ -111,7 +119,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
         Debug.Log(accuracy);
 
-        if (target && accuracy > this.bc.personagens[this.bc.fluxo.jogadorAtual].minAccuracy)
+        if (target && accuracy > attacker.minAccuracy)
         {
             Debug.Log("Acertou ataque" +
                 "");

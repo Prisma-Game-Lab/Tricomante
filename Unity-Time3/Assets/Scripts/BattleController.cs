@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour
@@ -7,9 +9,9 @@ public class BattleController : MonoBehaviour
     public FluxoBatalha fluxo;// botando uma referencia ao script FluxoBatalha
     private Tipos tipo;
     public GameObject tiposPanel;
-    public GameObject elementosPanel;
+    public GameObject ataquesPanel;
     [HideInInspector]public Entity target;//[HideInInspector] serve para ocultar a referencia desejada 
-    
+    [HideInInspector] public effects currentEffect;
 
     public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, independente do tipo do personagem(aliado ou inimigo) 
 
@@ -21,12 +23,13 @@ public class BattleController : MonoBehaviour
 
 
 
-    public List<ElementsSetup> elementos = new List<ElementsSetup>();//criando uma lista pra ir adicionando os elementos 
+    public List<ElementsSetup> elementos = new List<ElementsSetup>(); //criando uma lista pra ir adicionando os elementos 
 
     private IState _attackState;
     private IState _supportState;
     private IState _deffenceState;
     private IState currentState;
+    public string currentStateName;
 
     private Entity ety;
 
@@ -53,7 +56,7 @@ public class BattleController : MonoBehaviour
         _attackState = new AttackState(this);
         _supportState = new SupportState(this);
         _deffenceState = new DeffenceState(this);
-        currentState = _attackState;
+        setState(_attackState);
     }
     public void SetTarget(Entity ent)
     {
@@ -73,13 +76,14 @@ public class BattleController : MonoBehaviour
     }
     public void FinishMove()
     {
-        DesativaElementos();
+        DesativaAtaque();
         fluxo.AvancaJogador();
     }
 
     public void setState(IState newState)
     {
         this.currentState = newState;
+        currentStateName = newState.GetType().Name;
     }
 
     public IState GetAttackState()
@@ -96,6 +100,7 @@ public class BattleController : MonoBehaviour
     {
         return _supportState;
     }
+
     /*
     public IState GetCurrentState()
     {
@@ -103,71 +108,89 @@ public class BattleController : MonoBehaviour
         return statusAtual;
     }
     */
-
+    static string GetName<T>(Expression<Func<T>> expr)
+    {
+        return ((MemberExpression)expr.Body).Member.Name;
+    }
 
     private void DefineOrdem()
     {
         personagens.Sort((b, a) => a.agilidade.CompareTo(b.agilidade)); // CompareTo compara e o Sort faz isso pra lista inteira
         
     }
-    
-    public void triggerWaterEffect()
+
+    public void SelectEffect(effects effect)
     {
-        if (personagens[fluxo.jogadorAtual].attackStatesSetup.waterDamage <= ety.energia)
+        currentEffect = effect;
+    }
+
+    public void triggerEffect()
+    {
+        triggerEffectFromEnum(currentEffect);
+    }
+    public dynamic GetCurrentSetup()
+    {
+        var player = GetCurrentPlayer();
+        switch (currentStateName)
         {
-            currentState.triggerWaterEffect();
-            FinishMove();
+            case "AttackState":
+                return player.attackStatesSetup;
+            case "DeffenceState":
+                return player.deffenseStatesSetup;
+            default:
+                return player.attackStatesSetup;
         }
-        else
+    }
+    public void triggerEffectFromEnum(effects effect)
+    {
+        var player = GetCurrentPlayer();
+        var setup = GetCurrentSetup();
+        var energy = 0;
+        switch (effect)
         {
-            Debug.Log("Sem energia para esse elemento");
-            AtivaTipos();
+            case effects.water:
+                energy = setup.waterEnergy;
+                currentState.triggerWaterEffect();
+                break;
+            case effects.fire:
+                energy = setup.fireEnergy;
+                currentState.triggerFireEffect();
+                break;
+            case effects.earth:
+                energy = setup.earthEnergy;
+                currentState.triggerEarthEffect();
+                break;
+            case effects.cure:
+                energy = setup.cureEnergy;
+                currentState.triggerCureEffect();
+                break;
+            case effects.punch:
+                energy = setup.punchEnergy;
+                currentState.triggerPunchEffect();
+                break;
+            case effects.pierce:
+                energy = setup.pierceEnergy;
+                currentState.triggerPierceEffect();
+                break;
+            case effects.cut:
+                energy = setup.cutEnergy;
+                currentState.triggerCutEffect();
+                break;
         }
-    }
-
-    public void triggerFireEffect()
-    {
-        currentState.triggerFireEffect();
+        if (player.tipo == Entity.Tipo.Player)
+        {
+            player.removeEnergia(energy);
+        }
         FinishMove();
     }
 
-    public void triggerEarthEffect()
+    public void AtivaAtaque() // faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
     {
-        currentState.triggerEarthEffect();
-        FinishMove();
+        ataquesPanel.SetActive(true);
     }
-
-    public void triggerCureEffect()
+    public void DesativaAtaque() //nesse caso desativa o painel dos elementos
     {
-        currentState.triggerCureEffect();
-        FinishMove();
-    }
-
-    public void triggerPunchEffect()
-    {
-        currentState.triggerPunchEffect();
-        FinishMove();
-    }
-
-    public void triggerPierceEffect()
-    {
-        currentState.triggerPierceEffect();
-        FinishMove();
-    }
-
-    public void triggerCutEffect()
-    {
-        currentState.triggerCutEffect();
-        FinishMove();
-    }
-
-    public void AtivaTipos() // faz com que o painel dos tipos de acao apareca para o jogar ao comecar o seu turno  
-    {
-        tiposPanel.SetActive(true);
-    }
-    public void DesativaElementos() //nesse caso desativa o painel dos elementos
-    {
-        elementosPanel.SetActive(false);
+        ataquesPanel.SetActive(false);
     }
     
     public void ButtonChangeState(int i)
@@ -184,14 +207,6 @@ public class BattleController : MonoBehaviour
         {
             setState(GetDeffenceState());
         }
-
-        tiposPanel.SetActive(false);
-        elementosPanel.SetActive(true);
-    }
-    public void VoltaTipo()//volta no painel dos tipos de acao 
-    {
-        tiposPanel.SetActive(true);
-        elementosPanel.SetActive(false);
     }
 
     public Entity GetCurrentPlayer()

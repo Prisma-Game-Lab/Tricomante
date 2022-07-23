@@ -19,6 +19,13 @@ MonoBehaviour:
   pierceDamage: 10
   punchDamage: 10
   earthDamage: 10
+  waterEnergy: 50
+  fireEnergy: 5
+  cutEnergy: 5
+  cureEnergy: 5
+  pierceEnergy: 5
+  punchEnergy: 5
+  earthEnergy: 5
   heal: 5
   burnChance: 101
   blindChance: 101

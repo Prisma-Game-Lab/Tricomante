@@ -24,7 +24,6 @@ public class FluxoBatalha : MonoBehaviour
         }
         
         var jogador = SetJogador();
-        Debug.Log(jogador);
         lastPlayer = jogador;
 
         jogador.gameObject.transform.localScale = new Vector3(2f, 2f, 1);
@@ -41,7 +40,7 @@ public class FluxoBatalha : MonoBehaviour
 
         if (jogador.tipo == Entity.Tipo.Player)
         {
-            battleController.AtivaTipos();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes
+            battleController.AtivaAtaque();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes
         }
         else
         {
@@ -77,33 +76,7 @@ public class FluxoBatalha : MonoBehaviour
         // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
 
         battleController.ButtonChangeState(tipo);
-        if (elemento == 1)
-        {
-            battleController.triggerWaterEffect();
-        }
-        else if (elemento == 2)
-        {
-            battleController.triggerFireEffect();
-        }
-        else if (elemento == 3)
-        {
-            battleController.triggerEarthEffect();
-        }
-        else if (elemento == 4)
-        {
-            battleController.triggerCureEffect();
-        }
-        else if (elemento == 5)
-        {
-            battleController.triggerPunchEffect();
-        }
-        else if (elemento == 6)
-        {
-            battleController.triggerPierceEffect();
-        }
-        else
-        {
-            battleController.triggerCutEffect();
-        }
+        battleController.SelectEffect((effects) elemento);
+        battleController.triggerEffect();
     }
 }

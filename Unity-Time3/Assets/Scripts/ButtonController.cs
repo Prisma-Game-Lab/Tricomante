@@ -20,17 +20,15 @@ public class ButtonController : MonoBehaviour
         _bc = FindObjectOfType<BattleController>();
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        /*
-        Debug.Log(_bc.GetCurrentState());
-        */
+        CheckEnergy();
     }
 
-    private void DefenseSetup()
+    private void CheckEnergy()
     {
         var player = _bc.GetCurrentPlayer();
-        var setup = player.deffenseStatesSetup;
+        var setup = _bc.GetCurrentSetup();
         
         water.interactable = setup.waterEnergy < player.energia? true: false;
         fire.interactable = setup.fireEnergy < player.energia ? true : false;
@@ -40,33 +38,4 @@ public class ButtonController : MonoBehaviour
         punch.interactable = setup.punchEnergy < player.energia ? true : false;
         earth.interactable = setup.earthEnergy < player.energia ? true : false;
     }
-
-    private void AttackSetup()
-    {
-        var player = _bc.GetCurrentPlayer();
-        var setup = player.attackStatesSetup;
-
-        water.interactable = setup.waterEnergy < player.energia ? true : false;
-        fire.interactable = setup.fireEnergy < player.energia ? true : false;
-        cut.interactable = setup.cutEnergy < player.energia ? true : false;
-        cure.interactable = setup.cureEnergy < player.energia ? true : false;
-        pierce.interactable = setup.pierceEnergy < player.energia ? true : false;
-        punch.interactable = setup.punchEnergy < player.energia ? true : false;
-        earth.interactable = setup.earthEnergy < player.energia ? true : false;
-    }
-    /* descomentar o código
-    private void SupportSetup()
-    {
-        var player = _bc.GetCurrentPlayer();
-        var setup = player.supportStatesSetup;
-
-        water.interactable = setup.waterEnergy < player.energia ? true : false;
-        fire.interactable = setup.fireEnergy < player.energia ? true : false;
-        cut.interactable = setup.cutEnergy < player.energia ? true : false;
-        cure.interactable = setup.cureEnergy < player.energia ? true : false;
-        pierce.interactable = setup.pierceEnergy < player.energia ? true : false;
-        punch.interactable = setup.punchEnergy < player.energia ? true : false;
-        earth.interactable = setup.earthEnergy < player.energia ? true : false;       
-    }
-    */
 }

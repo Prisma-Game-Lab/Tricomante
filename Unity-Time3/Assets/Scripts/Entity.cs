@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Entity : MonoBehaviour , IPointerClickHandler
+public class Entity : MonoBehaviour, IPointerClickHandler
 {
     public enum Tipo { Player, Inimigo };
+    
     public Tipo tipo;
-
+    [Header("Referencias")]
     public BarController hpbar;
     public CharactersSetup personagem;
     public BarController EnergyBar;
-    public FluxoBatalha fluxo;
+    public AttackStatesSetup attackStatesSetup;
+    public DeffenseStatesSetup deffenseStatesSetup;
 
     private BattleController battleController;
 
+    [Header("Atributos")]
     public int vida;
     public int energia;
     public int agilidade;
@@ -24,14 +27,14 @@ public class Entity : MonoBehaviour , IPointerClickHandler
 
     public float minAccuracy = 0.25f; 
 
-    public bool burn;
-    public bool blind;
-    public bool dodge;
-    public bool critic;
-    public int burnCounter;
-    public int blindCounter;
-    public int dodgeCounter;
-    public int criticCounter;
+    [HideInInspector]public bool burn;
+    [HideInInspector]public bool blind;
+    [HideInInspector]public bool dodge;
+    [HideInInspector]public bool critic;
+    [HideInInspector]public int burnCounter;
+    [HideInInspector]public int blindCounter;
+    [HideInInspector]public int dodgeCounter;
+    [HideInInspector]public int criticCounter;
     
     public int maxBurnCounter = 3;
     public int maxBlindCounter = 2;
@@ -39,8 +42,6 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public int maxCriticCounter = 3;
 
 
-    public AttackStatesSetup attackStatesSetup;
-    public DeffenseStatesSetup deffenseStatesSetup;
 
     private void Awake()
     {
@@ -49,10 +50,6 @@ public class Entity : MonoBehaviour , IPointerClickHandler
         burnCounter = maxBurnCounter;
         blindCounter = maxBlindCounter;
         dodgeCounter = maxDodgeCounter;
-    }
-
-    private void OnValidate()
-    {
         LoadSetup();
     }
 
@@ -69,7 +66,10 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     private void LoadInitialState()
     {
         this.hpbar.SetMaxValue(vida);
-        this.EnergyBar.SetMaxValue(energia);
+        if (tipo == Tipo.Player)
+        {
+            EnergyBar.SetMaxValue(energia);
+        }
 
         burn = false;
         blind = false;
@@ -159,7 +159,7 @@ public class Entity : MonoBehaviour , IPointerClickHandler
     public void setEnergia(int energy)
     {
         this.energia = energy;
-        this.hpbar.SetValue(this.energia);
+        this.EnergyBar.SetValue(this.energia);
     }
 
     public void adicionaEnergia(int quantidade)
