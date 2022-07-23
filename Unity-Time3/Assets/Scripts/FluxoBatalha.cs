@@ -57,6 +57,16 @@ public class FluxoBatalha : MonoBehaviour
             jogador.Blind();
         }
 
+        if(jogador.provoke)
+        {
+            jogador.Provoke();
+        }
+        
+        if (jogador.protect)
+        {
+            jogador.Protect();
+        }
+
         if (jogador.tipo == Entity.Tipo.Player)
         {
             battleController.AtivaAtaque();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes

@@ -41,7 +41,8 @@ public class DeffenceState : IState
 
     public void triggerPunchEffect()
     {
-
+        this.bc.target.provoker = this.bc.GetCurrentPlayer();
+        this.bc.target.provoke = true;
     }
 
     public void triggerPierceEffect()
@@ -51,7 +52,8 @@ public class DeffenceState : IState
 
     public void triggerCutEffect()
     {
-
+        this.bc.target.protector = this.bc.GetCurrentPlayer();
+        this.bc.target.protect = true;
     }
 
 }

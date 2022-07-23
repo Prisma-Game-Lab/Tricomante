@@ -35,12 +35,18 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     [HideInInspector]public bool critic;
     [HideInInspector]public bool shallowGrave;
     [HideInInspector]public bool riposte;
+    [HideInInspector]public bool provoke;
+    [HideInInspector]public bool protect;
     [HideInInspector]public int burnCounter;
     [HideInInspector]public int blindCounter;
     [HideInInspector]public int dodgeCounter;
     [HideInInspector]public int criticCounter;
     [HideInInspector]public int shallowGraveCounter;
     [HideInInspector]public int preventionCounter;
+    [HideInInspector]public int provokeCounter;
+    [HideInInspector]public int protectCounter;
+    public Entity provoker;
+    public Entity protector;
     
 
     [Header("Contadores")]
@@ -50,6 +56,8 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int maxCriticCounter = 3;
     public int maxShallowGraveCounter = 1;
     public int maxPreventionCounter = 2;
+    public int maxProvokeCounter = 2;
+    public int maxProtectCounter = 2;
 
 
 
@@ -87,6 +95,8 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         shallowGrave = false;
         riposte = false;
         tempVida = 0;
+        provoke = false;
+        provoker = null;
     }
 
     public void Burn()
@@ -144,6 +154,29 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         {
             preventionCounter = maxPreventionCounter;
             tempVida = 0;
+        }
+    }
+
+    public void Provoke()
+    {
+        this.provokeCounter--;
+
+        if(this.provokeCounter <= 0)
+        {
+            provokeCounter = maxProvokeCounter;
+            provoke = false;
+            provoker = null;
+        }
+    }
+    public void Protect()
+    {
+        this.protectCounter--;
+
+        if(this.protectCounter <= 0)
+        {
+            protectCounter = maxProtectCounter;
+            protect = false;
+            protector = null;
         }
     }
 

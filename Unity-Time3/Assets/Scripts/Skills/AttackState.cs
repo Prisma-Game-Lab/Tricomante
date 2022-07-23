@@ -109,6 +109,16 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         float accuracy;
         float evase;
 
+        if (attacker.provoke)
+        {
+            target = attacker.provoker; 
+        }
+
+        if (target.protect)
+        {
+            target = target.protector;
+        }
+        
         if (attacker.blind)
         {
             accuracy = Random.Range(0.0f, 1.0f);
@@ -133,6 +143,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
             Debug.Log("Acertou ataque" +
                 "");
             float damage = dano / (1 + target.defesa / 100);
+
             if(target.tempVida > 0)
             {
               target.tempVida -= (int) damage;
@@ -142,6 +153,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
              target.removeVida((int) damage);
             }
             
+
             if(target.riposte)
             {
                 float riposteDamage = damage * target.deffenseStatesSetup.riposteReturn;
