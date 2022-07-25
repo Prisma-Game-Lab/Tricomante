@@ -111,10 +111,11 @@ public class FluxoBatalha : MonoBehaviour
         // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
         if(battleController.personagens[jogadorAtual].thorns && tipo == 0)
         {
-            Debug.Log("entrou");
+            Debug.Log("bloqueado de atacar - thorns");
             int offset = Random.Range(1,3);
             tipo += offset;
         }
+        Debug.Log($"Acao do Inimigo: {tipo} {elemento}");
         battleController.ButtonChangeState(tipo);
         battleController.SelectEffect((effects) elemento);
         battleController.triggerEffect();

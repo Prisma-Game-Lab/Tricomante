@@ -76,6 +76,7 @@ public class BattleController : MonoBehaviour
     }
     public void FinishMove()
     {
+        FindObjectOfType<UIHandler>().ResetIndicators();
         DesativaAtaque();
         fluxo.AvancaJogador();
     }

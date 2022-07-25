@@ -140,8 +140,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
         if (target && accuracy > attacker.minAccuracy && evase > target.minEvase)
         {
-            Debug.Log("Acertou ataque" +
-                "");
+            Debug.Log("Acertou ataque");
             float damage = dano / (1 + target.defesa / 100);
 
             if(target.tempVida > 0)

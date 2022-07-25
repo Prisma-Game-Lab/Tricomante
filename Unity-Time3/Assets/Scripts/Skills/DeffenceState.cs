@@ -8,52 +8,51 @@ public class DeffenceState : IState
 
     public DeffenceState(BattleController _bc)
     {
-        this.bc = _bc;
+        bc = _bc;
     }
 
     public void triggerWaterEffect() //o efeito da agua na defesa da uma chance de esquva do ataque 
     {
-        this.bc.target.dodge = true;
-        
+        bc.target.dodge = true;
     }
    
 
     public void triggerFireEffect()
     {
-        this.bc.target.shallowGrave = true;
+        bc.target.shallowGrave = true;
     }
 
     public void triggerEarthEffect() //da mais defesa ao personagem e aramzena o dano recebido ate quando ele atacar no proximo turno 
     {
-        this.bc.target.defesa += this.bc.GetCurrentPlayer().deffenseStatesSetup.riposte;
-        this.bc.target.riposte = true;
+        bc.target.defesa += bc.GetCurrentPlayer().deffenseStatesSetup.riposte;
+        bc.target.riposte = true;
 
     }
 
     public void triggerCureEffect()
     {
-       for (int i = 0; i < this.bc.aliados.Count; i++)
+       for (int i = 0; i < bc.aliados.Count; i++)
         {
-            this.bc.aliados[i].tempVida = this.bc.GetCurrentPlayer().deffenseStatesSetup.preventionHp;
+           bc.aliados[i].tempVida = bc.GetCurrentPlayer().deffenseStatesSetup.preventionHp;
         }
 
     }
 
     public void triggerPunchEffect()
     {
-        this.bc.target.provoker = this.bc.GetCurrentPlayer();
-        this.bc.target.provoke = true;
+        bc.target.provoker = bc.GetCurrentPlayer();
+        bc.target.provoke = true;
     }
 
     public void triggerPierceEffect()
     {
-         this.bc.target.thorns = true;
+         bc.target.thorns = true;
     }
 
     public void triggerCutEffect()
     {
-        this.bc.target.protector = this.bc.GetCurrentPlayer();
-        this.bc.target.protect = true;
+        bc.target.protector = bc.GetCurrentPlayer();
+        bc.target.protect = true;
     }
 
 }
