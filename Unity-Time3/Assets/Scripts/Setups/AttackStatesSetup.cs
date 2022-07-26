@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackStates", menuName = "AttackStates")]
+[CreateAssetMenu(fileName = "AttackStates", menuName = "Setup/AttackStates")]
 public class AttackStatesSetup : ScriptableObject
 {
     [Header("Atributos de dano")]

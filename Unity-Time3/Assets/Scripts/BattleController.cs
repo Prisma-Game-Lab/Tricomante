@@ -7,7 +7,6 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     public FluxoBatalha fluxo;// botando uma referencia ao script FluxoBatalha
-    private Tipos tipo;
     public GameObject tiposPanel;
     public GameObject ataquesPanel;
     [HideInInspector]public Entity target;//[HideInInspector] serve para ocultar a referencia desejada 
@@ -20,10 +19,6 @@ public class BattleController : MonoBehaviour
     [HideInInspector]public List<Entity> inimigos = new List<Entity>();
 
     [HideInInspector]public List<Entity> mortos = new List<Entity>();
-
-
-
-    public List<ElementsSetup> elementos = new List<ElementsSetup>(); //criando uma lista pra ir adicionando os elementos 
 
     private IState _attackState;
     private IState _supportState;

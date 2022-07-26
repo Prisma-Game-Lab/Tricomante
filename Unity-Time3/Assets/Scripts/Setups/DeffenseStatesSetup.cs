@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DeffensesStates", menuName = "DeffensesStates")]
+[CreateAssetMenu(fileName = "DeffensesStates", menuName = "Setup/DeffensesStates")]
 public class DeffenseStatesSetup : ScriptableObject
 {
     
