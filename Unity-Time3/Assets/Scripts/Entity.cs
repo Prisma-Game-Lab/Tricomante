@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int resistencia;
     public int sorte;
     public int tempVida;
+    
 
     public float minAccuracy = 0.25f; 
     public float minEvase;
@@ -38,6 +39,8 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     [HideInInspector]public bool provoke;
     [HideInInspector]public bool protect;
     [HideInInspector]public bool thorns;
+    [HideInInspector]public bool stun;
+    [HideInInspector]public bool fortify;
     [HideInInspector]public int burnCounter;
     [HideInInspector]public int blindCounter;
     [HideInInspector]public int dodgeCounter;
@@ -47,6 +50,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     [HideInInspector]public int provokeCounter;
     [HideInInspector]public int protectCounter;
     [HideInInspector]public int thornsCounter;
+    [HideInInspector]public int fortifyCounter;
     public Entity provoker;
     public Entity protector;
     
@@ -61,6 +65,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int maxProvokeCounter = 2;
     public int maxProtectCounter = 3;
     public int maxthornsCounter = 2;
+    public int maxFortifyCounter = 2;
 
 
 
@@ -76,6 +81,8 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         provokeCounter = maxProvokeCounter;
         protectCounter = maxProtectCounter;
         thornsCounter = maxthornsCounter;
+        criticCounter = maxCriticCounter;
+        fortifyCounter = maxFortifyCounter;
 
         LoadSetup();
     }
@@ -107,6 +114,9 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         provoke = false;
         provoker = null;
         thorns = false;
+        critic = false;
+        stun = false;
+        fortify = false;
     }
 
     public void Burn()
@@ -232,18 +242,29 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     private void die()
     {
         battleController.personagens.Remove(this);
-        battleController.aliados.Remove(this);
         battleController.mortos.Add(this);
-        this.gameObject.SetActive(false);
+        if(this.tipo == Tipo.Player)
+        {
+            battleController.aliados.Remove(this);
+        }else
+        {
+            battleController.inimigos.Remove(this);
+        }
 
     }
 
     public void revive()
     {
         battleController.personagens.Add(this);
-        battleController.aliados.Add(this);
         battleController.mortos.Remove(this);
         setVida(personagem.vida/5);
+         if(this.tipo == Tipo.Player)
+        {
+            battleController.aliados.Add(this);
+        }else
+        {
+            battleController.inimigos.Add(this);
+        }
     }
 
     public void setEnergia(int energy)
@@ -262,16 +283,28 @@ public class Entity : MonoBehaviour, IPointerClickHandler
         setEnergia(energia - quantidade);
     }
 
-    public void danoCritico()
+    public void criticAura()
     {
         
 
         this.criticCounter--;
 
-        if(this.criticCounter < 0)
+        if(this.criticCounter <= 0)
         {
             criticCounter = maxCriticCounter;
             critic = false;
+
+        }
+    }
+
+    public void Fortify()
+    {
+        this.fortifyCounter--;
+
+        if(this.fortifyCounter <= 0)
+        {
+            fortifyCounter = maxFortifyCounter;
+            fortify = false;
 
         }
     }

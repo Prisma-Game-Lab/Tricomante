@@ -28,5 +28,5 @@ MonoBehaviour:
   earthEnergy: 35
   heal: 20
   burnChance: 30
-  blindChance: 50
+  blindChance: 100
   defenceReduce: 20

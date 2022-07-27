@@ -24,8 +24,11 @@ public class DeffenceState : IState
 
     public void triggerEarthEffect() //da mais defesa ao personagem e aramzena o dano recebido ate quando ele atacar no proximo turno 
     {
-        bc.target.defesa += GameStateManager.instance.deffenceSetup.riposte;
-        bc.target.riposte = true;
+        if(!bc.target.riposte)
+        {
+            bc.target.defesa += GameStateManager.instance.deffenceSetup.riposte;
+            bc.target.riposte = true;   
+        }
 
     }
 

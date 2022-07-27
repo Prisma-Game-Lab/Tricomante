@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SupportStateSetup : MonoBehaviour
+[CreateAssetMenu(fileName = "SupportStates", menuName = "Setup/SupportStates")]
+public class SupportStateSetup : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int heal;
+    public float criticChance;
+    public float criticMultiplier;
+    public int fortify;
+   
 }

@@ -12,4 +12,5 @@ public class CharactersSetup : ScriptableObject
     public int defesa;
     public int resistencia; 
     public int sorte;
+    public int maxHP;
 }

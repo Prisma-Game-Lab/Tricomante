@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce9fbd00141fc1419cdd953d0e11083, type: 3}
   m_Name: marionete 1
   m_EditorClassIdentifier: 
+  nivel: 0
   vida: 100
   energia: 100
   agilidade: 100
   defesa: 100
   resistencia: 100
   sorte: 100
+  maxHP: 100

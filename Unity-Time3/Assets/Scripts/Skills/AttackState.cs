@@ -80,7 +80,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         int dano = GameStateManager.instance.attackSetup.punchDamage;
 
         Damage(this.bc.target, dano);
-        this.bc.target.defesa -= 5;
+        this.bc.target.defesa -= GameStateManager.instance.attackSetup.defenceReduce;
     }
 
     public void triggerPierceEffect()
@@ -142,6 +142,14 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
         {
             Debug.Log("Acertou ataque");
             float damage = dano / (1 + target.defesa / 100);
+            if(attacker.critic)
+            {
+                float chance = Random.Range(0.0f, 1.0f);
+                if(chance > GameStateManager.instance.supportSetup.criticChance)
+                {
+                    damage = damage * GameStateManager.instance.supportSetup.criticMultiplier;
+                }
+            }
 
             if(target.tempVida > 0)
             {

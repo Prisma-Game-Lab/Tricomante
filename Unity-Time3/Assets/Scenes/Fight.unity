@@ -716,6 +716,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -725,6 +727,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -736,6 +739,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!212 &99281795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2038,6 +2042,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -2047,6 +2053,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -2058,6 +2065,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!58 &297359102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3209,6 +3217,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -3218,6 +3228,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -3229,6 +3240,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!212 &534636084
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3608,6 +3620,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -3617,6 +3631,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -3628,6 +3643,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!212 &653041675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4063,6 +4079,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -4072,6 +4090,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -4083,6 +4102,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!61 &785292690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11182,6 +11202,8 @@ MonoBehaviour:
   provoke: 0
   protect: 0
   thorns: 0
+  stun: 0
+  fortify: 0
   burnCounter: 0
   blindCounter: 0
   dodgeCounter: 0
@@ -11191,6 +11213,7 @@ MonoBehaviour:
   provokeCounter: 0
   protectCounter: 0
   thornsCounter: 0
+  fortifyCounter: 0
   provoker: {fileID: 0}
   protector: {fileID: 0}
   maxBurnCounter: 3
@@ -11202,6 +11225,7 @@ MonoBehaviour:
   maxProvokeCounter: 2
   maxProtectCounter: 3
   maxthornsCounter: 2
+  maxFortifyCounter: 2
 --- !u!212 &2001367874
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -33,6 +33,11 @@ public class FluxoBatalha : MonoBehaviour
             jogador.Burn();
         }
 
+        if(jogador.critic)
+        {
+            jogador.criticAura();
+        }
+
         if (jogador.dodge)
         {
             jogador.Dodge();
@@ -70,6 +75,17 @@ public class FluxoBatalha : MonoBehaviour
         if (jogador.thorns)
         {
             jogador.Thorns();
+        }
+
+        if(jogador.fortify)
+        {
+            jogador.Fortify();
+        }
+
+        if(jogador.stun)
+        {
+            jogador.stun = false;
+            AvancaJogador();
         }
 
         if (jogador.tipo == Entity.Tipo.Player)
