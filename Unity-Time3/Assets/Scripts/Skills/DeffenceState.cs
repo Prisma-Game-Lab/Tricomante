@@ -24,7 +24,7 @@ public class DeffenceState : IState
 
     public void triggerEarthEffect() //da mais defesa ao personagem e aramzena o dano recebido ate quando ele atacar no proximo turno 
     {
-        bc.target.defesa += bc.GetCurrentPlayer().deffenseStatesSetup.riposte;
+        bc.target.defesa += GameStateManager.instance.deffenceSetup.riposte;
         bc.target.riposte = true;
 
     }
@@ -33,7 +33,7 @@ public class DeffenceState : IState
     {
        for (int i = 0; i < bc.aliados.Count; i++)
         {
-           bc.aliados[i].tempVida = bc.GetCurrentPlayer().deffenseStatesSetup.preventionHp;
+           bc.aliados[i].tempVida = GameStateManager.instance.deffenceSetup.preventionHp;
         }
 
     }

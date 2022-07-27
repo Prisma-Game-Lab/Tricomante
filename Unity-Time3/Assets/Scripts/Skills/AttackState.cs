@@ -15,7 +15,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerWaterEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.waterDamage;
+        int dano = GameStateManager.instance.attackSetup.waterDamage;
         if (attacker.tipo == Entity.Tipo.Player)
         {
             for (int i = 0; i < bc.inimigos.Count; i++)
@@ -36,8 +36,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     {
         var attacker = bc.GetCurrentPlayer();
 
-        int dano = attacker.attackStatesSetup.fireDamage;
-        int chanceFogo = attacker.attackStatesSetup.burnChance;
+        int dano = GameStateManager.instance.attackSetup.fireDamage;
+        int chanceFogo = GameStateManager.instance.attackSetup.burnChance;
 
         Damage(this.bc.target, dano);
         int burnChance = Random.Range(1, 101);
@@ -52,8 +52,8 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerEarthEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.earthDamage;
-        int chanceBlind = attacker.attackStatesSetup.blindChance;
+        int dano = GameStateManager.instance.attackSetup.earthDamage;
+        int chanceBlind = GameStateManager.instance.attackSetup.blindChance;
         Damage(this.bc.target, dano);
         int blindChance = Random.Range(1, 101);
 
@@ -66,7 +66,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerCureEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.cureDamage;
+        int dano = GameStateManager.instance.attackSetup.cureDamage;
 
         int damage = Damage(this.bc.target, dano);
         Cura(attacker, damage);
@@ -77,7 +77,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerPunchEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.punchDamage;
+        int dano = GameStateManager.instance.attackSetup.punchDamage;
 
         Damage(this.bc.target, dano);
         this.bc.target.defesa -= 5;
@@ -86,7 +86,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerPierceEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.pierceDamage;
+        int dano = GameStateManager.instance.attackSetup.pierceDamage;
 
         this.bc.target.vida -= dano;
         this.bc.target.hpbar.SetValue(this.bc.target.vida);
@@ -96,7 +96,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
     public void triggerCutEffect()
     {
         var attacker = bc.GetCurrentPlayer();
-        int dano = attacker.attackStatesSetup.cutDamage;
+        int dano = GameStateManager.instance.attackSetup.cutDamage;
         for (int j = 0; j < 3; j++)
         {
             Damage(this.bc.target, dano);
@@ -155,7 +155,7 @@ public class AttackState : IState // SIgnifica que essa classe herda de, ou seja
 
             if(target.riposte)
             {
-                float riposteDamage = damage * target.deffenseStatesSetup.riposteReturn;
+                float riposteDamage = damage * GameStateManager.instance.deffenceSetup.riposteReturn;
                 attacker.removeVida((int)riposteDamage);
             }       
             return (int) damage;

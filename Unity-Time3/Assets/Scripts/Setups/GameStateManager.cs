@@ -18,6 +18,9 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
 {
     public List<Runa> runasDisponiveis;
 
+    public AttackStateSetup attackSetup;
+    public DeffenceStateSetup deffenceSetup;
+    public SupportStateSetup supportSetup;
     public void AddRuna(Runa tipo)
     {
         runasDisponiveis.Add(tipo);

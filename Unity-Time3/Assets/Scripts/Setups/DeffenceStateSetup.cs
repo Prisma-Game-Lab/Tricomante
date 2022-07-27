@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DeffensesStates", menuName = "Setup/DeffensesStates")]
-public class DeffenseStatesSetup : ScriptableObject
+public class DeffenceStateSetup : ScriptableObject
 {
     
     [Header("Estatisticas")]

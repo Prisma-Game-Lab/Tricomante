@@ -10,16 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70d405c277eabed4a8505c7046d68b58, type: 3}
-  m_Name: Inim 2
+  m_Name: AttackSetup
   m_EditorClassIdentifier: 
-  waterDamage: 10
-  fireDamage: 10
-  cutDamage: 10
-  cureDamage: 10
-  pierceDamage: 10
-  punchDamage: 10
-  earthDamage: 10
-  heal: 5
-  burnChance: 101
-  blindChance: 101
-  defenceReduce: 5
+  waterDamage: 20
+  fireDamage: 20
+  cutDamage: 20
+  cureDamage: 20
+  pierceDamage: 20
+  punchDamage: 20
+  earthDamage: 20
+  waterEnergy: 5
+  fireEnergy: 10
+  cutEnergy: 15
+  cureEnergy: 20
+  pierceEnergy: 25
+  punchEnergy: 30
+  earthEnergy: 35
+  heal: 20
+  burnChance: 30
+  blindChance: 50
+  defenceReduce: 20

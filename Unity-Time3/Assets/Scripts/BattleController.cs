@@ -15,9 +15,7 @@ public class BattleController : MonoBehaviour
     public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, independente do tipo do personagem(aliado ou inimigo) 
 
     [HideInInspector]public List<Entity> aliados = new List<Entity>();
-
     [HideInInspector]public List<Entity> inimigos = new List<Entity>();
-
     [HideInInspector]public List<Entity> mortos = new List<Entity>();
 
     private IState _attackState;
@@ -126,15 +124,14 @@ public class BattleController : MonoBehaviour
     }
     public dynamic GetCurrentSetup()
     {
-        var player = GetCurrentPlayer();
         switch (currentStateName)
         {
             case "AttackState":
-                return player.attackStatesSetup;
+                return GameStateManager.instance.attackSetup;
             case "DeffenceState":
-                return player.deffenseStatesSetup;
+                return GameStateManager.instance.deffenceSetup;
             default:
-                return player.attackStatesSetup;
+                return GameStateManager.instance.attackSetup;
         }
     }
     public void triggerEffectFromEnum(effects effect)

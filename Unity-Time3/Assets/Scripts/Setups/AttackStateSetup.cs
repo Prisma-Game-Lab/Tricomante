@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackStates", menuName = "Setup/AttackStates")]
-public class AttackStatesSetup : ScriptableObject
+public class AttackStateSetup : ScriptableObject
 {
     [Header("Atributos de dano")]
     public int waterDamage;

@@ -8,12 +8,12 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public enum Tipo { Player, Inimigo };
     
     public Tipo tipo;
-    [Header("Referencias")]
+    [Header("BarController")]
     public BarController hpbar;
-    public CharactersSetup personagem;
     public BarController EnergyBar;
-    public AttackStatesSetup attackStatesSetup;
-    public DeffenseStatesSetup deffenseStatesSetup;
+
+    [Header("Referencias")]
+    public CharactersSetup personagem;
 
     private BattleController battleController;
 
