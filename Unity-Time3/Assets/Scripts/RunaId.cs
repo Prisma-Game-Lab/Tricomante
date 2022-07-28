@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class RunaId : MonoBehaviour
 {
-    public Runa tipo;
+    public effects tipo;
+    private BattleController _bc;
+    private void Awake()
+    {
+        _bc = FindObjectOfType<BattleController>();
+    }
+
+    public void SelectEffect()
+    {
+        _bc.SelectEffect(tipo);
+    }
 }

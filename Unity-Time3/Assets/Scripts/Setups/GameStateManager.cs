@@ -2,26 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Runa
-{
-    fogo,
-    agua,
-    terra,
-    cura,
-    cortar,
-    perfurar,
-    pancada
-};
-
 [CreateAssetMenu(menuName = "GameStateManager")]
 public class GameStateManager : ScriptableSingleton<GameStateManager>
 {
-    public List<Runa> runasDisponiveis;
+    public List<effects> runasDisponiveis;
 
     public AttackStateSetup attackSetup;
     public DeffenceStateSetup deffenceSetup;
     public SupportStateSetup supportSetup;
-    public void AddRuna(Runa tipo)
+
+    public int Fiapos;
+    public void AddRuna(effects tipo)
     {
         runasDisponiveis.Add(tipo);
         var spawners = FindObjectsOfType<RunaSpawner>();
@@ -38,6 +29,6 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
 
     public void AddRuna(int tipo)
     {
-        AddRuna((Runa)tipo);
+        AddRuna((effects)tipo);
     }
 }

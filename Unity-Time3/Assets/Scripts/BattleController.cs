@@ -115,7 +115,13 @@ public class BattleController : MonoBehaviour
 
     public void SelectEffect(effects effect)
     {
+        FindObjectOfType<UIHandler>().SwitchSelectionElemento((int)effect);
         currentEffect = effect;
+    }
+
+    public void SelectEffect(RunaId runaId)
+    {
+        SelectEffect(runaId.tipo);
     }
 
     public void triggerEffect()
@@ -200,6 +206,7 @@ public class BattleController : MonoBehaviour
         {
             setState(GetDeffenceState());
         }
+        FindObjectOfType<UIHandler>().SwitchSelectionTipo(i);
     }
 
     public Entity GetCurrentPlayer()

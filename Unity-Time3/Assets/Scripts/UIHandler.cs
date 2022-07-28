@@ -4,33 +4,63 @@ using UnityEngine;
 
 public class UIHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject selected;
-    private GameObject spawnedTipo;
-    private GameObject spawnedElemento;
+    [SerializeField] private GameObject selectedHud;
+    [SerializeField] private GameObject selectedTipo;
+    [SerializeField] private GameObject selectedElemento;
+    private bool isSelectedTipo;
+    private bool isSelectedElemento;
 
-    public void ResetIndicators()
+    private void Awake()
     {
-        Destroy(spawnedTipo);
-        Destroy(spawnedElemento);
+        ResetIndicators();
     }
 
-    public void SwitchSelectionTipo(GameObject button)
+    private void CheckSelected()
     {
-        Destroy(spawnedTipo);
-        spawnedTipo = SpawnSelected(button, 115);
-    }
-
-    public void SwitchSelectionElemento(GameObject button)
-    {
-        Destroy(spawnedElemento);
-        spawnedElemento = SpawnSelected(button, 145);
+        if (isSelectedTipo && isSelectedElemento)
+        {
+            selectedHud.SetActive(true);
+        }
+        else
+        {
+        selectedHud.SetActive(false);
+        }
     }
     
-    private GameObject SpawnSelected(GameObject button, int positionOffset)
+    public void ResetIndicators()
     {
-        var new_display = Instantiate(selected, button.transform.position, Quaternion.identity, button.transform);
-        new_display.GetComponent<RectTransform>().SetParent(button.GetComponent<RectTransform>());
-        new_display.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, positionOffset);
-        return new_display;
+        selectedTipo.SetActive(false);
+        isSelectedTipo = false;
+        ResetElemento();
+        CheckSelected();
+    }
+
+    private void ResetElemento()
+    {
+        selectedElemento.SetActive(false);
+        isSelectedElemento = false;
+        
+    }
+
+    public void SwitchSelectionTipo(int button)
+    {
+        ResetElemento();
+        selectedTipo.SetActive(true);
+        isSelectedTipo = true;
+        
+        var rt = selectedTipo.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(45 + 70 * button, rt.anchoredPosition.y);
+        CheckSelected();
+    }
+
+    public void SwitchSelectionElemento(int button)
+    {
+        selectedElemento.SetActive(true);
+        isSelectedElemento = true;
+        button = GameStateManager.instance.runasDisponiveis.IndexOf((effects)button);
+        
+        var rt = selectedElemento.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(-98 + 70 * button, rt.anchoredPosition.y);
+        CheckSelected();
     }
 }
