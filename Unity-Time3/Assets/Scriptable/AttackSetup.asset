@@ -30,3 +30,24 @@ MonoBehaviour:
   burnChance: 30
   blindChance: 100
   defenceReduce: 20
+  waterTarget:
+    tipoAlvo: 1
+    tipoEntity: 1
+  fireTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  cutTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  cureTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  pierceTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  punchTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  earthTarget:
+    tipoAlvo: 0
+    tipoEntity: 1

@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Entity : MonoBehaviour, IPointerClickHandler
+public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public enum Tipo { Player, Inimigo };
     
     public Tipo tipo;
-    [Header("BarController")]
+    [Header("UI")]
+    public SelectedEntityIndicator indicador;
     public BarController hpbar;
     public BarController EnergyBar;
 
     [Header("Referencias")]
     public CharactersSetup personagem;
 
-    private BattleController battleController;
 
     [Header("Atributos")]
     public int vida;
@@ -67,6 +67,7 @@ public class Entity : MonoBehaviour, IPointerClickHandler
     public int maxthornsCounter = 2;
     public int maxFortifyCounter = 2;
 
+    private BattleController battleController;
 
 
     private void Awake()
@@ -311,9 +312,18 @@ public class Entity : MonoBehaviour, IPointerClickHandler
 
 
     
-    public void OnPointerClick(PointerEventData eventData)
+    public void SelectAsTarget()
     {
         battleController.SetTarget(this);
     }
-    
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        indicador.gameObject.transform.localScale = new Vector2(1.2f,1.2f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        indicador.gameObject.transform.localScale = new Vector2(1f, 1f);
+    }
 }

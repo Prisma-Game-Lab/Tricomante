@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -53,23 +54,63 @@ public class BattleController : MonoBehaviour
     }
     public void SetTarget(Entity ent)
     {
-        if (target)
+
+        if (FindObjectOfType<UIHandler>().isCombinationSelected() && GetCurrentTarget().tipoEntity == ent.tipo)
         {
-            target.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            if (target && GetCurrentTarget().tipoAlvo == TypeAlvo.Unitario)
+            {
+                target.indicador.DisplayLowOpacity();
+            }
+            target = ent;
+            target.indicador.SelectAsTarget();
         }
-        target = ent;
-        target.GetComponent<SpriteRenderer>().color = new Color(1, 0, 1, 1);
+
+    }
+
+    public Alvo GetCurrentTarget()
+    {
+        var setup = GetCurrentSetup();
+        var target = new Alvo();
+
+        switch (currentEffect)
+        {
+            case effects.cut:
+                target = setup.cutTarget;
+                break;
+            case effects.water:
+                target = setup.waterTarget;
+                break;
+            case effects.fire:
+                target = setup.fireTarget;
+                break;
+            case effects.cure:
+                target = setup.cureTarget;
+                break;
+            case effects.pierce:
+                target = setup.pierceTarget;
+                break;
+            case effects.punch:
+                target = setup.punchTarget;
+                break;
+            case effects.earth:
+                target = setup.earthTarget;
+                break;
+            default:
+                Debug.Log("merda");
+                break;
+        };
+        return target;
     }
     public void ResetTarget()
     {
         if (target)
         {
-            target.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            target.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
     }
     public void FinishMove()
     {
-        FindObjectOfType<UIHandler>().ResetIndicators();
+        FindObjectOfType<UIHandler>().ResetSelection();
         DesativaAtaque();
         fluxo.AvancaJogador();
     }
@@ -95,13 +136,6 @@ public class BattleController : MonoBehaviour
         return _supportState;
     }
 
-    /*
-    public IState GetCurrentState()
-    {
-        IState statusAtual = currentState;
-        return statusAtual;
-    }
-    */
     static string GetName<T>(Expression<Func<T>> expr)
     {
         return ((MemberExpression)expr.Body).Member.Name;
@@ -115,8 +149,8 @@ public class BattleController : MonoBehaviour
 
     public void SelectEffect(effects effect)
     {
-        FindObjectOfType<UIHandler>().SwitchSelectionElemento((int)effect);
         currentEffect = effect;
+        FindObjectOfType<UIHandler>().SwitchSelectionElemento((int)effect);
     }
 
     public void SelectEffect(RunaId runaId)
@@ -137,7 +171,7 @@ public class BattleController : MonoBehaviour
             case "DeffenceState":
                 return GameStateManager.instance.deffenceSetup;
             default:
-                return GameStateManager.instance.attackSetup;
+                return GameStateManager.instance.supportSetup;
         }
     }
     public void triggerEffectFromEnum(effects effect)
@@ -200,11 +234,11 @@ public class BattleController : MonoBehaviour
         }
         else if (i == 1)
         {
-            setState(GetSupportState());
+            setState(GetDeffenceState());
         }
         else 
         {
-            setState(GetDeffenceState());
+            setState(GetSupportState());
         }
         FindObjectOfType<UIHandler>().SwitchSelectionTipo(i);
     }

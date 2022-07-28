@@ -16,3 +16,24 @@ MonoBehaviour:
   criticChance: 0.1
   criticMultiplier: 2
   fortify: 10
+  waterTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  fireTarget:
+    tipoAlvo: 1
+    tipoEntity: 0
+  cutTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  cureTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  pierceTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  punchTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  earthTarget:
+    tipoAlvo: 1
+    tipoEntity: 0

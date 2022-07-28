@@ -25,7 +25,14 @@ public class DeffenceStateSetup : ScriptableObject
     public int riposte;
     public float riposteReturn;
 
+    [Header("Alvos")]
+    public Alvo waterTarget;
+    public Alvo fireTarget;
+    public Alvo cutTarget;
+    public Alvo cureTarget;
+    public Alvo pierceTarget;
+    public Alvo punchTarget;
+    public Alvo earthTarget;
 
-    
 }
 

@@ -27,3 +27,24 @@ MonoBehaviour:
   thorns: 15
   riposte: 12
   riposteReturn: 10
+  waterTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  fireTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  cutTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  cureTarget:
+    tipoAlvo: 1
+    tipoEntity: 0
+  pierceTarget:
+    tipoAlvo: 0
+    tipoEntity: 0
+  punchTarget:
+    tipoAlvo: 0
+    tipoEntity: 1
+  earthTarget:
+    tipoAlvo: 0
+    tipoEntity: 0

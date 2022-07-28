@@ -30,5 +30,22 @@ public class AttackStateSetup : ScriptableObject
     public int blindChance;
     public int defenceReduce;
 
-    
+    [Header("Alvos")]
+    public Alvo waterTarget;
+    public Alvo fireTarget;
+    public Alvo cutTarget;
+    public Alvo cureTarget;
+    public Alvo pierceTarget;
+    public Alvo punchTarget;
+    public Alvo earthTarget;
+
+}
+
+public enum TypeAlvo { Unitario, Multiplo }
+
+[System.Serializable]
+public class Alvo
+{
+    public TypeAlvo tipoAlvo;
+    public Entity.Tipo tipoEntity;
 }

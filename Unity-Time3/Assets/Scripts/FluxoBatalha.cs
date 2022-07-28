@@ -20,13 +20,13 @@ public class FluxoBatalha : MonoBehaviour
         battleController.ResetTarget();
         if (lastPlayer)
         {
-            lastPlayer.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            lastPlayer.gameObject.transform.localScale = new Vector3(1f, 1f, 1);
         }
         
         var jogador = SetJogador();
         lastPlayer = jogador;
 
-        jogador.gameObject.transform.localScale = new Vector3(2f, 2f, 1);
+        jogador.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1);
 
         if (jogador.burn)
         {
