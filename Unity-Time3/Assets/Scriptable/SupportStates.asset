@@ -37,3 +37,10 @@ MonoBehaviour:
   earthTarget:
     tipoAlvo: 1
     tipoEntity: 0
+  waterEnergy: 25
+  fireEnergy: 18
+  cutEnergy: 15
+  cureEnergy: 10
+  pierceEnergy: 15
+  punchEnergy: 20
+  earthEnergy: 12

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SupportStates", menuName = "Setup/SupportStates")]
 public class SupportStateSetup : ScriptableObject
 {
+    [Header("Nivel runa")]
+    public int nivel;
+
     public int heal;
     public float criticChance;
     public float criticMultiplier;
@@ -18,5 +21,14 @@ public class SupportStateSetup : ScriptableObject
     public Alvo pierceTarget;
     public Alvo punchTarget;
     public Alvo earthTarget;
+
+    [Header("Estatisticas")]
+    public int waterEnergy;
+    public int fireEnergy;
+    public int cutEnergy;
+    public int cureEnergy;
+    public int pierceEnergy;
+    public int punchEnergy;
+    public int earthEnergy;
 
 }

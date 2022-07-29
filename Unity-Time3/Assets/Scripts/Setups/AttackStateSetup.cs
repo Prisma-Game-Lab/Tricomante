@@ -5,14 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AttackStates", menuName = "Setup/AttackStates")]
 public class AttackStateSetup : ScriptableObject
 {
+    [Header("Nivel runa")]
+    public int nivel;
+
     [Header("Atributos de dano")]
-    public int waterDamage;
-    public int fireDamage;
-    public int cutDamage;
-    public int cureDamage;
-    public int pierceDamage;
-    public int punchDamage;
-    public int earthDamage;
+    public int waterDamage; //{ get { return 4 + nivel * 2; } };
+    public int fireDamage; // { get { return 4 + nivel * 2; } };
+    public int cutDamage; //{ get { return 4 + nivel * 2; } };
+    public int cureDamage; //{ get { return 4 + nivel * 2; } };
+    public int pierceDamage; //{ get { return 4 + nivel * 2; } };
+    public int punchDamage; //{ get { return 4 + nivel * 2; } };
+    public int earthDamage; //{ get { return 4 + nivel * 2; } };
 
     [Header("Estatisticas")]
     public int waterEnergy;

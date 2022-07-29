@@ -43,4 +43,17 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
             fiapos -= preco;
         }
     }
+
+    public void UpgradeRuna(RunaId runaId)
+    {
+        var custo = 10 + 2 * attackSetup.nivel;
+
+        if (custo < fiapos)
+        {
+            attackSetup.nivel++;
+            supportSetup.nivel++;
+            attackSetup.nivel++;
+            fiapos -= custo;
+        }
+    }
 }

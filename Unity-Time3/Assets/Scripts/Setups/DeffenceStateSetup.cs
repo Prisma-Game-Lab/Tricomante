@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DeffensesStates", menuName = "Setup/DeffensesStates")]
 public class DeffenceStateSetup : ScriptableObject
 {
-    
+    [Header("Nivel runa")]
+    public int nivel;
+
     [Header("Estatisticas")]
     public int waterEnergy;
     public int fireEnergy;
