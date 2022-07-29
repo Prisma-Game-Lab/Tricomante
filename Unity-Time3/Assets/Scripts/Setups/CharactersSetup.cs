@@ -6,11 +6,18 @@ using UnityEngine;
 public class CharactersSetup : ScriptableObject
 {
     public int nivel;
-    public int vida; 
-    public int energia;
-    public int agilidade;
-    public int defesa;
-    public int resistencia; 
-    public int sorte;
-    public int maxHP;
+    [HideInInspector] public int vida;
+    [HideInInspector] public int energia;
+    public int agilidade { get { return 1 + nivel * 2; } }
+    public int defesa { get { return 10 + nivel * 5; } }
+    public int resistencia { get { return 5 + nivel * 5; } }
+    public int sorte { get { return 1 + nivel * 1; } }
+    public int maxEnergia { get { return 10 + nivel * 6; } }
+    public int maxHP { get { return 20 + nivel * 5; } }
+
+    private void OnValidate()
+    {
+        vida = maxHP;
+        energia = maxEnergia;
+    }
 }

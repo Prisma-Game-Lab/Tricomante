@@ -16,4 +16,4 @@ MonoBehaviour:
   attackSetup: {fileID: 11400000, guid: eaf3676158846284bb2697d606e9a1c7, type: 2}
   deffenceSetup: {fileID: 11400000, guid: e0a1a9edef02df64a81606927dc362f1, type: 2}
   supportSetup: {fileID: 11400000, guid: 5ab31215f53166148b2ddb8ef2c6a157, type: 2}
-  Fiapos: 0
+  fiapos: 0

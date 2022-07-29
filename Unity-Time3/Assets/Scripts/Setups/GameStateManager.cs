@@ -11,7 +11,8 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
     public DeffenceStateSetup deffenceSetup;
     public SupportStateSetup supportSetup;
 
-    public int Fiapos;
+    public int fiapos;
+    
     public void AddRuna(effects tipo)
     {
         runasDisponiveis.Add(tipo);
@@ -30,5 +31,16 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
     public void AddRuna(int tipo)
     {
         AddRuna((effects)tipo);
+    }
+
+    public void UpgradeLevel(Entity ent)
+    {
+        var preco = 10 + 2 * ent.personagem.nivel;
+        
+        if (preco < fiapos)
+        {
+            ent.personagem.nivel++;
+            fiapos -= preco;
+        }
     }
 }
