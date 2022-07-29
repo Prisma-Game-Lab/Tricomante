@@ -6,7 +6,7 @@ using UnityEngine;
 public class SupportStateSetup : ScriptableObject
 {
     [Header("Nivel runa")]
-     public Dictionary<int,int> levels = new Dictionary<int, int>()
+     /*public Dictionary<int,int> levels = new Dictionary<int, int>()
     {
         {0,1},//water = 0
         {1,1},// fire = 1
@@ -16,6 +16,7 @@ public class SupportStateSetup : ScriptableObject
         {5,1},// pierce = 5
         {6,1},// cut = 6
     };
+    */
     public int nivel;
 
     public int heal;

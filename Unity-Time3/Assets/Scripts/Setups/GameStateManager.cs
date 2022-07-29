@@ -44,16 +44,17 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
         }
     }
 
-    public void UpgradeRuna(RunaId runaId)
+    /*public void UpgradeRuna(RunaId runaId)
     {
         var custo = 10 + 2 * attackSetup.levels[runaId.tipo];
 
         if (custo < fiapos)
         {
-            attackSetup.levels[runaId.tipo]++;
-            deffenceSetup.levels[runaId.tipo]++;
-            supportSetup.levels[runaId.tipo]++;
+            //attackSetup.levels[runaId.tipo]++;
+            //deffenceSetup.levels[runaId.tipo]++;
+            //supportSetup.levels[runaId.tipo]++;
             fiapos -= custo;
         }
     }
+    */
 }
