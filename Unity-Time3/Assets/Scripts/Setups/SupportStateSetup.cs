@@ -6,6 +6,16 @@ using UnityEngine;
 public class SupportStateSetup : ScriptableObject
 {
     [Header("Nivel runa")]
+     public Dictionary<int,int> levels = new Dictionary<int, int>()
+    {
+        {0,1},//water = 0
+        {1,1},// fire = 1
+        {2,1},// earth = 2
+        {3,1},// cure = 3
+        {4,1},// punch = 4
+        {5,1},// pierce = 5
+        {6,1},// cut = 6
+    };
     public int nivel;
 
     public int heal;

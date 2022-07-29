@@ -15,4 +15,6 @@ public class RunaId : MonoBehaviour
     {
         _bc.SelectEffect(tipo);
     }
+
+    
 }
