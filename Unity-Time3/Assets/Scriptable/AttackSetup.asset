@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d405c277eabed4a8505c7046d68b58, type: 3}
   m_Name: AttackSetup
   m_EditorClassIdentifier: 
-  waterDamage: 20
-  fireDamage: 20
-  cutDamage: 20
-  cureDamage: 20
-  pierceDamage: 20
-  punchDamage: 20
-  earthDamage: 20
+  nivel: 0
   waterEnergy: 18
   fireEnergy: 25
   cutEnergy: 10

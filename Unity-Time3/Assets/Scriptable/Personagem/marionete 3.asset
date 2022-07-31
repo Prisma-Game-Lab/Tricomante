@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce9fbd00141fc1419cdd953d0e11083, type: 3}
   m_Name: marionete 3
   m_EditorClassIdentifier: 
-  nivel: 0
-  vida: 120
-  energia: 70
-  agilidade: 80
-  defesa: 70
-  resistencia: 10
-  sorte: 55
-  maxHP: 120
+  nivel: 3
+  vida: 35
+  energia: 28

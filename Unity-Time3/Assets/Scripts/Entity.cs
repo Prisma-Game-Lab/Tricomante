@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -224,6 +225,8 @@ public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             else
             {
+                this.vida = 0;
+                this.hpbar.SetValue(this.vida);
                 die(); 
             }
         }
@@ -242,6 +245,8 @@ public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void die()
     {
+        indicador.gameObject.SetActive(false);
+        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         battleController.personagens.Remove(this);
         battleController.mortos.Add(this);
         if(this.tipo == Tipo.Player)
@@ -258,7 +263,7 @@ public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         battleController.personagens.Add(this);
         battleController.mortos.Remove(this);
-        setVida(personagem.vida/5);
+        setVida(1);
          if(this.tipo == Tipo.Player)
         {
             battleController.aliados.Add(this);
@@ -310,7 +315,11 @@ public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-
+    public void SelectAsPlayer()
+    {
+        indicador.gameObject.SetActive(true);
+        indicador.SelectAsPlayer();
+    }
     
     public void SelectAsTarget()
     {

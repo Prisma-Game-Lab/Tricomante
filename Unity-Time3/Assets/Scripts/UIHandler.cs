@@ -18,8 +18,11 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         _bc = GetComponent<BattleController>();
-        HideEntityIndicators();
+    }
+    private void Start()
+    {
         ResetSelection();
+        HideEntityIndicators();
     }
 
     public bool isCombinationSelected()
@@ -80,10 +83,9 @@ public class UIHandler : MonoBehaviour
 
     private void ShowEntityIndicators()
     {
-
-        Debug.Log(new { _bc.currentStateName, _bc.currentEffect });
         var target = _bc.GetCurrentTarget();
-        var entidades = target.tipoEntity == Entity.Tipo.Player ? _bc.aliados : _bc.inimigos;
+        var entidades = (target.tipoEntity == Entity.Tipo.Player && _bc.GetCurrentPlayer().tipo == Entity.Tipo.Player) ||
+                        (target.tipoEntity != Entity.Tipo.Player && _bc.GetCurrentPlayer().tipo != Entity.Tipo.Player) ? _bc.aliados : _bc.inimigos;
         if (target.tipoAlvo == TypeAlvo.Unitario)
         {
             foreach (var player in entidades)
@@ -106,6 +108,9 @@ public class UIHandler : MonoBehaviour
 
     private void HideEntityIndicators()
     {
-        _bc.personagens.ForEach(p => p.indicador.gameObject.SetActive(false));
+        _bc.personagens.ForEach(p => {
+            if (p.indicador.currentColor != Color.white)
+                p.indicador.gameObject.SetActive(false);
+        });
     }
 }

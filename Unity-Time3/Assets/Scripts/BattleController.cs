@@ -55,7 +55,9 @@ public class BattleController : MonoBehaviour
     public void SetTarget(Entity ent)
     {
 
-        if (FindObjectOfType<UIHandler>().isCombinationSelected() && GetCurrentTarget().tipoEntity == ent.tipo)
+        if (FindObjectOfType<UIHandler>().isCombinationSelected() &&
+           ((GetCurrentTarget().tipoEntity == Entity.Tipo.Inimigo && GetCurrentPlayer().tipo != ent.tipo) ||
+           (GetCurrentTarget().tipoEntity == Entity.Tipo.Player && GetCurrentPlayer().tipo == ent.tipo)))
         {
             if (target && GetCurrentTarget().tipoAlvo == TypeAlvo.Unitario)
             {
@@ -65,6 +67,12 @@ public class BattleController : MonoBehaviour
             target.indicador.SelectAsTarget();
         }
 
+    }
+
+    public void SetEnemyTarget(Entity ent)
+    {
+        target = ent;
+        target.indicador.SelectAsTarget();
     }
 
     public Alvo GetCurrentTarget()

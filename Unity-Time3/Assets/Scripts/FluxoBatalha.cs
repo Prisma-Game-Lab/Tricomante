@@ -21,9 +21,11 @@ public class FluxoBatalha : MonoBehaviour
         if (lastPlayer)
         {
             lastPlayer.gameObject.transform.localScale = new Vector3(1f, 1f, 1);
+            lastPlayer.indicador.gameObject.SetActive(false);
         }
         
         var jogador = SetJogador();
+        jogador.SelectAsPlayer();
         lastPlayer = jogador;
 
         jogador.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1);
@@ -113,27 +115,57 @@ public class FluxoBatalha : MonoBehaviour
     private IEnumerator AcaoInimigo()
     { 
         Debug.Log("Turno do inimigo");
-        yield return new WaitForSeconds(1);
-        battleController.SetTarget(battleController.aliados[(int)Random.Range(0, battleController.aliados.Count)]);
-        yield return new WaitForSeconds(1);
-        EscolheRunas();
+        yield return new WaitForSeconds(2);
+        EscolheRunas(SelectState(), SelectElemento());
+        yield return new WaitForSeconds(2);
+        SetEnemyTarget();
+        yield return new WaitForSeconds(2);
+        battleController.triggerEffect();
+
+    }
+
+    private void SetEnemyTarget()
+    {
+        var alvo = battleController.GetCurrentTarget();
+        if (alvo.tipoAlvo != TypeAlvo.Multiplo)
+        {
+            if (alvo.tipoEntity == Entity.Tipo.Player)
+            {
+                battleController.SetTarget(battleController.inimigos[Random.Range(0, battleController.inimigos.Count)]);
+            }
+            else
+            {
+                battleController.SetTarget(battleController.aliados[Random.Range(0, battleController.aliados.Count)]);
+            }
+        }
     }
     // convesar sobre o fato do inimigo ter que escolher a acao antes de realizar seu turno 
-    public void EscolheRunas()
+    public void EscolheRunas(int state, int elemento)
     {
-        // se sortear 1 - ataque, se sortear 2 - defesa, se sortear 3 - suporte
-        int tipo = Random.Range(0, 2);
-        int elemento = Random.Range(1, 8);
-        // 1 - agua, 2 - fogo, 3 - terra, 4 - cura, 5 - punch, 6 - pierce 7 - cortar
-        if(battleController.personagens[jogadorAtual].thorns && tipo == 0)
+        Debug.Log($"Acao do Inimigo: {state} {(effects) elemento}");
+        battleController.ButtonChangeState(state);
+        battleController.SelectEffect((effects) elemento);
+    }
+
+    private int SelectElemento()
+    {
+        // effects { 0 - water, 1 - fire, 2 - earth, 3 - cure, 4 - punch, 5 - pierce, 6 - cut }
+        return Random.Range(0, 7);
+
+    }
+
+    private int SelectState()
+    {
+        // states { 0 - ataque, 1 - defesa, 2 - suporte }
+        var state = Random.Range(0, 2);
+
+        if (battleController.personagens[jogadorAtual].thorns && state == 0)
         {
             Debug.Log("bloqueado de atacar - thorns");
-            int offset = Random.Range(1,3);
-            tipo += offset;
+            int offset = Random.Range(1, 3);
+            state += offset;
         }
-        Debug.Log($"Acao do Inimigo: {tipo} {elemento}");
-        battleController.ButtonChangeState(tipo);
-        battleController.SelectEffect((effects) elemento);
-        battleController.triggerEffect();
+
+        return state;
     }
 }

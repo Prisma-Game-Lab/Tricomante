@@ -5,28 +5,31 @@ using UnityEngine.UI;
 
 public class SelectedEntityIndicator : MonoBehaviour
 {
+    private Image _img;
+    public Color currentColor { get { return _img.color; } }
     private Color originalColor;
     private Color originalColorLow;
     private Color white = Color.white;
 
     private void Awake()
     {
-        originalColor = GetComponent<Image>().color;
+        _img = GetComponent<Image>();
+        originalColor = _img.color;
         originalColorLow = new Color(originalColor.r, originalColor.g, originalColor.b, 0.4f);
     }
 
     public void DisplayLowOpacity()
     {
-        GetComponent<Image>().color = originalColorLow;
+        _img.color = originalColorLow;
     }
 
     public void SelectAsPlayer()
     {
-        GetComponent<Image>().color = white;
+        _img.color = white;
     }
 
     public void SelectAsTarget()
     {
-        GetComponent<Image>().color = originalColor;
+        _img.color = originalColor;
     }
 }

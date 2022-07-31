@@ -12,7 +12,7 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
     public SupportStateSetup supportSetup;
 
     public int fiapos;
-    
+
     public void AddRuna(effects tipo)
     {
         runasDisponiveis.Add(tipo);
