@@ -9,7 +9,7 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
 
     public RuneLevels playerLevels;
     public RuneLevels enemyLevels;
-    
+
     public AttackStateSetup attackSetup;
     public DeffenceStateSetup deffenceSetup;
     public SupportStateSetup supportSetup;

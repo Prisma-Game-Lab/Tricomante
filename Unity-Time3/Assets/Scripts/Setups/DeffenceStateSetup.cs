@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DeffensesStates", menuName = "Setup/DeffensesStates")]
 public class DeffenceStateSetup : ScriptableObject
 {
-    [HideInInspector] public RuneLevels runeLevels;
+    [HideInInspector] public RuneLevels runeLevels { get { return FindObjectOfType<BattleController>().activeLevels; } }
 
     [Header("Estatisticas")]
     public int waterEnergy;

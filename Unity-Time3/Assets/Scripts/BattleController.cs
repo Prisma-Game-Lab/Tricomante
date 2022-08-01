@@ -13,6 +13,10 @@ public class BattleController : MonoBehaviour
     [HideInInspector]public Entity target;//[HideInInspector] serve para ocultar a referencia desejada 
     [HideInInspector] public effects currentEffect;
 
+    public RuneLevels activeLevels { get {
+            return GetCurrentPlayer().tipo == Entity.Tipo.Player ? GameStateManager.instance.playerLevels : GameStateManager.instance.enemyLevels;
+        } }
+
     public List<Entity> personagens = new List<Entity>();// quem tiver maior agilidade comeca, independente do tipo do personagem(aliado ou inimigo) 
 
     [HideInInspector]public List<Entity> aliados = new List<Entity>();

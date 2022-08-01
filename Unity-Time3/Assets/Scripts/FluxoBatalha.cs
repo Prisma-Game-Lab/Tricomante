@@ -96,12 +96,10 @@ public class FluxoBatalha : MonoBehaviour
 
         if (jogador.tipo == Entity.Tipo.Player)
         {
-            SwitchRuneLevels(playerLevels);
             battleController.AtivaAtaque();// se entidade for um player, o programa chamara a funcao AtivaTipos() que ira mostrar o painel dos tipos de acoes
         }
         else
         {
-            SwitchRuneLevels(enemyLevels);
             StartCoroutine(AcaoInimigo());
         }
     }
@@ -171,12 +169,5 @@ public class FluxoBatalha : MonoBehaviour
         }
 
         return state;
-    }
-
-    private void SwitchRuneLevels(RuneLevels rl)
-    {
-        GameStateManager.instance.attackSetup.runeLevels = rl;
-        GameStateManager.instance.deffenceSetup.runeLevels = rl;
-        GameStateManager.instance.supportSetup.runeLevels = rl;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SupportStates", menuName = "Setup/SupportStates")]
 public class SupportStateSetup : ScriptableObject
 {
-    [HideInInspector] public RuneLevels runeLevels;
+    [HideInInspector] public RuneLevels runeLevels { get { return FindObjectOfType<BattleController>().activeLevels; } }
 
     public int heal;
     public float criticChance;
