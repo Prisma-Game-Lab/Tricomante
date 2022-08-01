@@ -15,6 +15,11 @@ public class CharactersSetup : ScriptableObject
     public int maxEnergia { get { return 10 + nivel * 6; } }
     public int maxHP { get { return 20 + nivel * 5; } }
 
+    public void LevelUp()
+    {
+        nivel++;
+    }
+
     private void OnValidate()
     {
         vida = maxHP;

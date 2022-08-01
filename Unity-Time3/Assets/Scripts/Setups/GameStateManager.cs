@@ -7,6 +7,9 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
 {
     public List<effects> runasDisponiveis;
 
+    public RuneLevels playerLevels;
+    public RuneLevels enemyLevels;
+    
     public AttackStateSetup attackSetup;
     public DeffenceStateSetup deffenceSetup;
     public SupportStateSetup supportSetup;
@@ -33,9 +36,9 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
         AddRuna((effects)tipo);
     }
 
-    public void UpgradeLevel(Entity ent)
+    public void LevelUpEntity(Entity ent)
     {
-        var preco = 10 + 2 * ent.personagem.nivel;
+        var preco = 12 + 6 * ent.personagem.nivel;
         
         if (preco < fiapos)
         {
@@ -44,17 +47,18 @@ public class GameStateManager : ScriptableSingleton<GameStateManager>
         }
     }
 
-    /*public void UpgradeRuna(RunaId runaId)
+    public void UpgradeRuna(effects runa)
     {
-        var custo = 10 + 2 * attackSetup.levels[runaId.tipo];
+        playerLevels.IncreaseLevel(runa);
+    }
+    
 
-        if (custo < fiapos)
+    public void UpdateStorePrices()
+    {
+        var items = FindObjectsOfType<ShopItem>();
+        foreach (var item in items)
         {
-            //attackSetup.levels[runaId.tipo]++;
-            //deffenceSetup.levels[runaId.tipo]++;
-            //supportSetup.levels[runaId.tipo]++;
-            fiapos -= custo;
+            item.GetPrice();
         }
     }
-    */
 }
