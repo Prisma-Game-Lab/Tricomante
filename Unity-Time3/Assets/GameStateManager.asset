@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68e29466db29224f9e338c8d5c91b07, type: 3}
   m_Name: GameStateManager
   m_EditorClassIdentifier: 
-  runasDisponiveis: 000000000100000002000000
+  runasDisponiveis: 0000000001000000020000000300000005000000
   playerLevels: {fileID: 11400000, guid: 29494c39f512ac7408187c2ae148ef6a, type: 2}
   enemyLevels: {fileID: 11400000, guid: 3dadd038340cd854d83b467ad31ab4a5, type: 2}
   attackSetup: {fileID: 11400000, guid: eaf3676158846284bb2697d606e9a1c7, type: 2}
   deffenceSetup: {fileID: 11400000, guid: e0a1a9edef02df64a81606927dc362f1, type: 2}
   supportSetup: {fileID: 11400000, guid: 5ab31215f53166148b2ddb8ef2c6a157, type: 2}
-  fiapos: 344
+  fiapos: 200
