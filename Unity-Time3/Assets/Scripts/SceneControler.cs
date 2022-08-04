@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+    public void GoToScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Fight", LoadSceneMode.Single);
     }
 }
