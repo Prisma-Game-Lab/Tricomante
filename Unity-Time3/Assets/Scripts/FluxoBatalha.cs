@@ -7,6 +7,7 @@ public class FluxoBatalha : MonoBehaviour
     public BattleController battleController;
     public int jogadorAtual;
     public Entity lastPlayer;
+    public Entity ety;
 
     [Header("RuneLevels")]
     public RuneLevels playerLevels;
@@ -169,5 +170,5 @@ public class FluxoBatalha : MonoBehaviour
         }
 
         return state;
-    }
+    }  
 }

@@ -260,4 +260,10 @@ public class BattleController : MonoBehaviour
         return personagens[fluxo.jogadorAtual];
     }
 
+    public void PassTurn()
+    {
+        Entity playerCurrent = GetCurrentPlayer();
+        playerCurrent.adicionaEnergia(playerCurrent.energia / 2);
+        fluxo.AvancaJogador();
+    }
 }
