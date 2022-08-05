@@ -20,6 +20,4 @@ public class RuneLevels : ScriptableObject
     {
         levels[runa]++;
     }    
-    [System.Serializable]
-    public class EffectsIntDictionary : SerializableDictionary<effects, int> { }
 }
