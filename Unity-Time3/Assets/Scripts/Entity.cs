@@ -256,7 +256,7 @@ public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             battleController.inimigos.Remove(this);
         }
-
+        battleController.CheckEndBattle();
     }
 
     public void revive()

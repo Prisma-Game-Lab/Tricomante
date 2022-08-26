@@ -73,6 +73,14 @@ public class BattleController : MonoBehaviour
 
     }
 
+    public void CheckEndBattle()
+    {
+        if (aliados.Count == 0 || inimigos.Count == 0)
+        {
+            FindObjectOfType<SceneController>().GoToScene();
+        }
+    }
+
     public void SetEnemyTarget(Entity ent)
     {
         target = ent;

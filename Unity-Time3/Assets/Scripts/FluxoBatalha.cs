@@ -129,18 +129,17 @@ public class FluxoBatalha : MonoBehaviour
 
     private void SetEnemyTarget()
     {
-        var alvo = battleController.GetCurrentTarget();
-        if (alvo.tipoAlvo != TypeAlvo.Multiplo)
+        var alvo = battleController.GetCurrentTarget(); 
+
+        if (alvo.tipoEntity == Entity.Tipo.Player)
         {
-            if (alvo.tipoEntity == Entity.Tipo.Player)
-            {
-                battleController.SetTarget(battleController.inimigos[Random.Range(0, battleController.inimigos.Count)]);
-            }
-            else
-            {
-                battleController.SetTarget(battleController.aliados[Random.Range(0, battleController.aliados.Count)]);
-            }
+            battleController.SetTarget(battleController.inimigos[Random.Range(0, battleController.inimigos.Count)]);
+        } 
+        else
+        {
+            battleController.SetTarget(battleController.aliados[Random.Range(0, battleController.aliados.Count)]);
         }
+
     }
     // convesar sobre o fato do inimigo ter que escolher a acao antes de realizar seu turno 
     public void EscolheRunas(int state, int elemento)
@@ -160,8 +159,9 @@ public class FluxoBatalha : MonoBehaviour
     private int SelectState()
     {
         // states { 0 - ataque, 1 - defesa, 2 - suporte }
-        var state = Random.Range(0, 2);
-
+        //var state = Random.Range(0, 1);
+        var state = 0;
+        
         if (battleController.personagens[jogadorAtual].thorns && state == 0)
         {
             Debug.Log("bloqueado de atacar - thorns");

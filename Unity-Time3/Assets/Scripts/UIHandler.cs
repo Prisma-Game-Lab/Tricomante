@@ -62,7 +62,11 @@ public class UIHandler : MonoBehaviour
     public void SwitchSelectionTipo(int button)
     {
         ResetElemento();
-        selectedTipo.SetActive(true);
+        if (_bc.GetCurrentPlayer().tipo == Entity.Tipo.Player)
+        {
+            selectedTipo.SetActive(true);
+
+        }
         isSelectedTipo = true;
         
         var rt = selectedTipo.GetComponent<RectTransform>();
