@@ -13,51 +13,198 @@ MonoBehaviour:
   m_Name: RoomSetup
   m_EditorClassIdentifier: 
   rooms:
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 3
+      agilidade: 3
+      defesa: 3
+      resistencia: 3
+      sorte: 5
+      maxEnergia: 32
+      maxHP: 40
+    enemy2l:
+      level: 3
+      agilidade: 3
+      defesa: 3
+      resistencia: 1
+      sorte: 2
+      maxEnergia: 3
+      maxHP: 3
+    enemy3L:
+      level: 3
+      agilidade: 5
+      defesa: 2
+      resistencia: 5
+      sorte: 3
+      maxEnergia: 2
+      maxHP: 4
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
     timesPlayed: 0
-  - enemy1Level: 0
-    enemy2Level: 0
-    enemy3Level: 0
+  - enemy1:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy2l:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
+    enemy3L:
+      level: 0
+      agilidade: 0
+      defesa: 0
+      resistencia: 0
+      sorte: 0
+      maxEnergia: 0
+      maxHP: 0
     level:
       m_keys: 00000000010000000200000003000000040000000500000006000000
       m_values: 01000000010000000100000001000000010000000100000001000000
